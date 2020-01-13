@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.ShooterCmd;
+import frc.robot.commands.TankDrive;
+import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -26,18 +28,21 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final DriveSub m_driveSub = new DriveSub();
   private final Shooter m_Shooter = new Shooter();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final ShooterCmd m_ShooterCmd = new ShooterCmd(m_Shooter);
 
-  Joystick m_Joystick = new Joystick(1);
+  Joystick m_JoystickLeft = new Joystick(1);
+  Joystick m_JoystickRight = new Joystick(2);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
+    m_driveSub.setDefaultCommand(new TankDrive(m_JoystickLeft.getY(), m_JoystickRight.getY(), m_driveSub);
     configureButtonBindings();
   }
 
@@ -48,7 +53,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_Joystick, 1).whileHeld(new ShooterCmd(m_Shooter)); 
+    new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter)); 
   }
 
 
