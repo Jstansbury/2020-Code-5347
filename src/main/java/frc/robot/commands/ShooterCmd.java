@@ -15,8 +15,9 @@ public class ShooterCmd extends CommandBase {
    * Creates a new ShooterCmd.
    */
   private final Shooter m_Shooter;
+  private final double m_velocity;
 
-  public ShooterCmd(Shooter subsystem) {
+  public ShooterCmd(double velocity, Shooter subsystem) {
     m_Shooter = subsystem;
     addRequirements(m_Shooter);
     // Use addRequirements() here to declare subsystem dependencies.
