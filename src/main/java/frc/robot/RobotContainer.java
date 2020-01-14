@@ -32,7 +32,6 @@ public class RobotContainer {
   private final Shooter m_Shooter = new Shooter();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final ShooterCmd m_ShooterCmd = new ShooterCmd(m_Shooter);
 
   Joystick m_JoystickLeft = new Joystick(1);
   Joystick m_JoystickRight = new Joystick(2);
