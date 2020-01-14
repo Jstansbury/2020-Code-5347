@@ -18,6 +18,7 @@ public class ShooterCmd extends CommandBase {
   private final double m_velocity;
 
   public ShooterCmd(double velocity, Shooter subsystem) {
+    m_velocity = velocity;
     m_Shooter = subsystem;
     addRequirements(m_Shooter);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -32,7 +33,7 @@ public class ShooterCmd extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Shooter.spinup();
+    m_Shooter.spinup(m_velocity);
   }
 
   // Called once the command ends or is interrupted.

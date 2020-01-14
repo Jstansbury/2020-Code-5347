@@ -26,8 +26,8 @@ public class Shooter extends SubsystemBase {
     Rightshoot.follow(Leftshoot);
     Rightshoot.setInverted(InvertType.OpposeMaster);
   } 
-  public void spinup(int targRPM) {
-    int velocity = targRPM*(1/60)*1/10(Tvalmeas)*(CPR)*(NU);
+  public void spinup(double targRPM) {
+    double velocity = targRPM*(1/60)*1/10(Tvalmeas)*(CPR)*(NU); //need to look up encoder statistics
     Leftshoot.set(ControlMode.Velocity, velocity);
    
   }
