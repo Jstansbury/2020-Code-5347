@@ -42,7 +42,7 @@ public class TankDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drivetrain.drive(m_left, m_right);
+    m_drivetrain.drive(m_drivetrain.Squareinput(m_left), m_drivetrain.Squareinput(m_right));
   }
 
   // Called once the command ends or is interrupted.
