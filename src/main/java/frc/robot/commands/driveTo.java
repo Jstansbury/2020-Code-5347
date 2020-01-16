@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSub;
 
@@ -17,10 +18,13 @@ public class driveTo extends CommandBase {
   private final DriveSub m_drivetrain;
   private final Double m_inchDistance;
   private double encoder;
+  private final PIDController m_pidloop;
 
   public driveTo(Double inchDistance, DriveSub drivetrain) {
+    encoder = inchDistance;
     m_drivetrain = drivetrain;
     m_inchDistance = inchDistance;
+    m_pidloop = m_drivetrain.pid_drivedistance;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_drivetrain);
   }
@@ -46,6 +50,6 @@ public class driveTo extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return m_pidloop.atSetpoint();
   }
 }

@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.driveTo;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Shooter;
@@ -55,6 +56,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter)); 
+    new JoystickButton(m_JoystickLeft, 7).whenPressed(new driveTo(12.0, m_driveSub));
   }
 
 
