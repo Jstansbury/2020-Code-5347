@@ -34,7 +34,6 @@ public class RobotContainer {
   private final Shooter m_Shooter = new Shooter();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final TankDrive m_TankDrive = new TankDrive(m_JoystickLeft.getY(), m_JoystickRight.getY(), m_driveSub);
 
 
   /**
@@ -42,7 +41,8 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure the button bindings
-    m_driveSub.setDefaultCommand(m_TankDrive);
+    m_driveSub.setDefaultCommand(new TankDrive(() -> m_JoystickLeft.getY(),
+    () -> m_JoystickRight.getY(), m_driveSub));
 
     configureButtonBindings();
   }

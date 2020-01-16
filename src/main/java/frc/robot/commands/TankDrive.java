@@ -7,6 +7,8 @@
 
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSub;
 
@@ -16,8 +18,8 @@ public class TankDrive extends CommandBase {
    */
 
     private final DriveSub m_drivetrain;
-    private final Double m_left;
-    private final Double m_right;
+    private final DoubleSupplier m_left;
+    private final DoubleSupplier m_right;
   
     /**
      * Creates a new TankDrive command.
@@ -26,7 +28,7 @@ public class TankDrive extends CommandBase {
      * @param right      The control input for the right sight of the drive
      * @param drivetrain The drivetrain subsystem to drive
      */
-    public TankDrive(double left, double right, DriveSub drivetrain) {
+    public TankDrive(DoubleSupplier left, DoubleSupplier right, DriveSub drivetrain) {
       m_drivetrain = drivetrain;
       m_left = left;
       m_right = right;
@@ -42,7 +44,7 @@ public class TankDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drivetrain.drive(m_drivetrain.Squareinput(m_left), m_drivetrain.Squareinput(m_right));
+    m_drivetrain.drive(m_drivetrain.Squareinput(m_left.getAsDouble()), m_drivetrain.Squareinput(m_right.getAsDouble()));
   }
 
   // Called once the command ends or is interrupted.
