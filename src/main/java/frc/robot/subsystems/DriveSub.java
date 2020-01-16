@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -20,19 +21,30 @@ public class DriveSub extends SubsystemBase {
    */
 
   private final SpeedController leftDrive =
-  new SpeedControllerGroup(new WPI_TalonSRX(0), new WPI_TalonSRX(1));
+  new SpeedControllerGroup(new WPI_TalonSRX(0), new WPI_TalonSRX(2));
 
   private final SpeedController rightDrive =
-  new SpeedControllerGroup(new WPI_TalonSRX(2), new WPI_TalonSRX(3));
+  new SpeedControllerGroup(new WPI_TalonSRX(4), new WPI_TalonSRX(3));
 
   private final DifferentialDrive tankieDrivie = new DifferentialDrive(leftDrive, rightDrive);
+  
+  public double Squareinput(double inputspeed){
+    double outputspeed = 0;
+
+    if (inputspeed >0){
+     outputspeed = inputspeed * inputspeed;
+    }else{
+      outputspeed = -1*(inputspeed * inputspeed);
+    }
+    return outputspeed;
+  } 
 
   public void drive(double left, double right) {
-    tankieDrivie.tankDrive(left, right);
+    tankieDrivie.tankDrive(right, left);
 
   }
 
-  
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
