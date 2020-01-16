@@ -26,14 +26,15 @@ public class TankDrive extends CommandBase {
      * @param right      The control input for the right sight of the drive
      * @param drivetrain The drivetrain subsystem to drive
      */
-    public TankDrive(Double left, Double right, DriveSub drivetrain) {
+    public TankDrive(double left, double right, DriveSub drivetrain) {
       m_drivetrain = drivetrain;
       m_left = left;
       m_right = right;
       addRequirements(m_drivetrain);
     }
 
-  // Called when the command is initially scheduled.
+
+// Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }

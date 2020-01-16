@@ -27,21 +27,23 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  Joystick m_JoystickLeft = new Joystick(1);
+  Joystick m_JoystickRight = new Joystick(2);
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveSub m_driveSub = new DriveSub();
   private final Shooter m_Shooter = new Shooter();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final TankDrive m_TankDrive = new TankDrive(m_JoystickLeft.getY(), m_JoystickRight.getY(), m_driveSub);
 
-  Joystick m_JoystickLeft = new Joystick(1);
-  Joystick m_JoystickRight = new Joystick(2);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
-    m_driveSub.setDefaultCommand(new TankDrive(m_JoystickLeft.getY(), m_JoystickRight.getY(), m_driveSub));
+    m_driveSub.setDefaultCommand(m_TankDrive);
+
     configureButtonBindings();
   }
 

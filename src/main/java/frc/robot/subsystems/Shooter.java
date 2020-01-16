@@ -24,7 +24,6 @@ public class Shooter extends SubsystemBase {
 
   public void shootinit() {
     Rightshoot.follow(Leftshoot);
-    Rightshoot.setInverted(InvertType.OpposeMaster);
   } 
   public void spinup() {
     Leftshoot.set(ControlMode.PercentOutput, 1);
