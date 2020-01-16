@@ -21,10 +21,10 @@ public class DriveSub extends SubsystemBase {
    */
 
   private final SpeedController leftDrive =
-  new SpeedControllerGroup(new WPI_TalonSRX(0), new WPI_TalonSRX(1));
+  new SpeedControllerGroup(new WPI_TalonSRX(0), new WPI_TalonSRX(2));
 
   private final SpeedController rightDrive =
-  new SpeedControllerGroup(new WPI_TalonSRX(2), new WPI_TalonSRX(3));
+  new SpeedControllerGroup(new WPI_TalonSRX(4), new WPI_TalonSRX(3));
 
   private final DifferentialDrive tankieDrivie = new DifferentialDrive(leftDrive, rightDrive);
   
@@ -34,13 +34,13 @@ public class DriveSub extends SubsystemBase {
     if (inputspeed >0){
      outputspeed = inputspeed * inputspeed;
     }else{
-      outputspeed = inputspeed * inputspeed;
+      outputspeed = -1*(inputspeed * inputspeed);
     }
     return outputspeed;
   } 
 
   public void drive(double left, double right) {
-    tankieDrivie.tankDrive(left, right);
+    tankieDrivie.tankDrive(right, left);
 
   }
 
