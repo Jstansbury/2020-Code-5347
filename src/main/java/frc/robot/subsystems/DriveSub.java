@@ -9,12 +9,12 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSub extends SubsystemBase {
@@ -36,8 +36,8 @@ public class DriveSub extends SubsystemBase {
 
 
   public DriveSub(){
-    leftEncoder.setDistancePerPulse(Math.PI*6/5);
-    rightEncoder.setDistancePerPulse(Math.PI*6/5);
+    leftEncoder.setDistancePerPulse((Math.PI*6/5)/10.75);
+    rightEncoder.setDistancePerPulse((Math.PI*6/5)/10.75);
 
   }
 
@@ -58,6 +58,7 @@ public class DriveSub extends SubsystemBase {
   }
 
   public double getaveragedistace(){
+    SmartDashboard.putNumber("avgdist", (leftEncoder.getDistance() + rightEncoder.getDistance())/2);
     return (leftEncoder.getDistance() + rightEncoder.getDistance())/2;
   }
 

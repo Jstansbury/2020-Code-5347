@@ -29,18 +29,14 @@ public class DriveDistance extends ProfiledPIDCommand {
             // The PID gains
             Constants.kdistanceP, Constants.kdistanceI, Constants.kdistanceD,
             // The motion profile constraints
-            new TrapezoidProfile.Constraints(0, 0)),
+            new TrapezoidProfile.Constraints(10, 20)),
         // This should return the measurement
         drive::getaveragedistace,
         // This should return the goal (can also be a constant)
-        DistancetoDrive,
+        DistancetoDrive + drive.getaveragedistace(),
         // This uses the output
-        (OUTput_d, setpoint) -> {
-          new PIDCommand(new PIDController(Constants.krotationP, Constants.krotationI, Constants.krotationD), 
-            drive::getangle,
-            0,
-            output -> drive.arcadeDrive(OUTput_d, output),
-            drive);
+        (output, setpoint) -> {
+              drive.arcadeDrive(output, 0);
           // Use the output (and setpoint, if desired) here
             },
         drive);

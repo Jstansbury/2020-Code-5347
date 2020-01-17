@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.PIDController;
+import frc.robot.commands.DriveDistance;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCMD;
 import frc.robot.commands.ShooterCmd;
@@ -66,6 +67,7 @@ public class RobotContainer {
     m_driveSub));
     new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter)); 
     new JoystickButton(m_JoystickLeft, 1).whileHeld(new IntakeCMD(m_intake)); 
+    new JoystickButton(m_JoystickLeft, 10).whenPressed(new DriveDistance(12, m_driveSub));
 
   }
 
