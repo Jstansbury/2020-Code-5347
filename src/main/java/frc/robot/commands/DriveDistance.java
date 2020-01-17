@@ -35,11 +35,11 @@ public class DriveDistance extends ProfiledPIDCommand {
         // This should return the goal (can also be a constant)
         DistancetoDrive,
         // This uses the output
-        (OUTput, setpoint) -> {
+        (OUTput_d, setpoint) -> {
           new PIDCommand(new PIDController(Constants.krotationP, Constants.krotationI, Constants.krotationD), 
             drive::getangle,
             0,
-            output -> drive.arcadeDrive(OUTput, output),
+            output -> drive.arcadeDrive(OUTput_d, output),
             drive);
           // Use the output (and setpoint, if desired) here
             },
