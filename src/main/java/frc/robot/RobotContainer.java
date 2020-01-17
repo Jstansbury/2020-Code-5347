@@ -12,10 +12,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.IntakeCMD;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.TankDrive;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakeSub;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
@@ -34,7 +36,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveSub m_driveSub = new DriveSub();
   private final Shooter m_Shooter = new Shooter();
-
+  private final IntakeSub m_intake = new IntakeSub(); 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
@@ -56,12 +58,15 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(100, m_Shooter)); 
+    //new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(100, m_Shooter)); 
     new JoystickButton(m_JoystickLeft, 6).whileHeld(new PIDCommand(new PIDController(Constants.krotationP, Constants.krotationI, Constants.krotationD), 
             m_driveSub::getangle,
      0,
     output -> m_driveSub.arcadeDrive(m_JoystickLeft.getY(), output),
     m_driveSub));
+    new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter)); 
+    new JoystickButton(m_JoystickLeft, 1).whileHeld(new IntakeCMD(m_intake)); 
+
   }
 
 

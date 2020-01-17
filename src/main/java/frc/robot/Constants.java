@@ -26,4 +26,5 @@ public final class Constants {
     public static double kdistanceP = 0;
     public static double kdistanceI = 0;
     public static double kdistanceD = 0;
+    public static int tailport = 6;
 }
