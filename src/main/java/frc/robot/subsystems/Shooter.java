@@ -14,8 +14,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
-  private final TalonSRX Leftshoot = new TalonSRX(0);
-  private final TalonSRX Rightshoot = new TalonSRX(1);
+  private final TalonSRX Leftshoot = new TalonSRX(1);
+  private final TalonSRX Rightshoot = new TalonSRX(5);
   
 
   /**
@@ -26,7 +26,7 @@ public class Shooter extends SubsystemBase {
     Rightshoot.follow(Leftshoot);
   } 
   public void spinup() {
-    Leftshoot.set(ControlMode.PercentOutput, 1);
+    Leftshoot.set(ControlMode.PercentOutput, -1);
    
   }
 

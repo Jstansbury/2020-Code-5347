@@ -18,4 +18,5 @@ package frc.robot;
 public final class Constants {
     public static int leftJoystickport = 0;
     public static int rightJoystickport = 1;
+    public static int tailport = 6;
 }
