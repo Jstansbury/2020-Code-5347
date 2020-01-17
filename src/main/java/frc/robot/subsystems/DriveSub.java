@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -30,7 +31,16 @@ public class DriveSub extends SubsystemBase {
   private final DifferentialDrive tankieDrivie = new DifferentialDrive(leftDrive, rightDrive);
 
   private final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-  
+  private final Encoder leftEncoder = new Encoder(1,2);
+  private final Encoder rightEncoder = new Encoder(3,4);
+
+
+  public DriveSub(){
+    leftEncoder.setDistancePerPulse(Math.PI*6/5);
+    rightEncoder.setDistancePerPulse(Math.PI*6/5);
+
+  }
+
   public double Squareinput(double inputspeed){
     double outputspeed = 0;
 
@@ -46,6 +56,11 @@ public class DriveSub extends SubsystemBase {
     tankieDrivie.tankDrive(left, right);
 
   }
+
+  public double getaveragedistace(){
+    return (leftEncoder.getDistance() + rightEncoder.getDistance())/2;
+  }
+
   public void arcadeDrive(double forward, double rotation){
     tankieDrivie.arcadeDrive(forward, rotation);
   }
