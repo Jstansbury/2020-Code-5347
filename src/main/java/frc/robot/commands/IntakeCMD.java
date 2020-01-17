@@ -31,13 +31,13 @@ public class IntakeCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakeSub.start();
+    m_intakeSub.startTail();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intakeSub.stop();
+    m_intakeSub.stopTail();
   }
 
   // Returns true when the command should end.
