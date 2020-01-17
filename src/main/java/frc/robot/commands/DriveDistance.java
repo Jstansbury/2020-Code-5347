@@ -7,33 +7,33 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj2.command.PIDCommand;
-import frc.robot.Constants;
-import frc.robot.subsystems.DriveSub;
+import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
+import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
+import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class DriveDistance extends PIDCommand {
+public class DriveDistance extends ProfiledPIDCommand {
   /**
    * Creates a new DriveDistance.
    */
-  public DriveDistance(double targetDistance, DriveSub m_drivesub) {
+  public DriveDistance() {
     super(
-        // The controller that the command will use
-        new PIDController(Constants.kdistanceP, Constants.kdistanceI, Constants.kdistanceD),
+        // The ProfiledPIDController used by the command
+        new ProfiledPIDController(
+            // The PID gains
+            0, 0, 0,
+            // The motion profile constraints
+            new TrapezoidProfile.Constraints(0, 0)),
         // This should return the measurement
-        m_drivesub::getaveragedistace,
-        // This should return the setpoint (can also be a constant)
-        targetDistance,
+        () -> 0,
+        // This should return the goal (can also be a constant)
+        () -> new TrapezoidProfile.State(),
         // This uses the output
-        output -> {
-          m_drivesub.arcadeDrive(output, 0);
-          // Use the output here
-        },
-        m_drivesub);
-        addRequirements(m_drivesub);
+        (output, setpoint) -> {
+          // Use the output (and setpoint, if desired) here
+        });
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
   }
@@ -41,6 +41,6 @@ public class DriveDistance extends PIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return getController().atSetpoint();
+    return false;
   }
 }
