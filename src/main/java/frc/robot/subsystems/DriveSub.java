@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -27,6 +28,8 @@ public class DriveSub extends SubsystemBase {
   new SpeedControllerGroup(new WPI_TalonSRX(4), new WPI_TalonSRX(3));
 
   private final DifferentialDrive tankieDrivie = new DifferentialDrive(leftDrive, rightDrive);
+
+  private final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
   
   public double Squareinput(double inputspeed){
     double outputspeed = 0;
@@ -39,11 +42,16 @@ public class DriveSub extends SubsystemBase {
     return outputspeed;
   } 
 
-  public void drive(double left, double right) {
+  public void tankdrive(double left, double right) {
     tankieDrivie.tankDrive(left, right);
 
   }
-
+  public void arcadeDrive(double forward, double rotation){
+    tankieDrivie.arcadeDrive(forward, rotation);
+  }
+  public double getangle(){
+    return gyro.getAngle();
+  }
 
   @Override
   public void periodic() {
