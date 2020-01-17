@@ -23,11 +23,9 @@ public class Shooter extends SubsystemBase {
    */
 
   public void shootinit() {
-    Rightshoot.follow(Leftshoot);
-    Rightshoot.setInverted(InvertType.OpposeMaster);
   } 
   public void spinup(double targRPM) {
-    double velocity = targRPM*(1/60)*1/10(Tvalmeas)*(CPR)*(NU); //need to look up encoder statistics
+    double velocity = 4 * targRPM * .000016667 * 48;
     Leftshoot.set(ControlMode.Velocity, velocity);
    
   }
@@ -38,6 +36,12 @@ public class Shooter extends SubsystemBase {
   }
 
   public Shooter() {
+    Rightshoot.follow(Leftshoot);
+    Leftshoot.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+
+  }
+
+  public void log(){
 
   }
 
