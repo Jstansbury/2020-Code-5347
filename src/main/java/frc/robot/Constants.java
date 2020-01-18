@@ -18,22 +18,23 @@ package frc.robot;
 public final class Constants {
     public static int leftJoystickport = 0;
     public static int rightJoystickport = 1;
-<<<<<<< HEAD
+
+
+
     public static double krotationP = 0;
     public static double krotationI = 0;
     public static double krotationD = 0;
 
-
     public static double kdistanceP = .1;
     public static double kdistanceI = 0;
     public static double kdistanceD = 0;
-=======
+
+
+    public static int ColorSenPort = 5;
     public static int leftdriveport1 = 3;
     public static int leftdriveport2 = 4;
     public static int rightdriveport1 = 2;
     public static int rightdriveport2 = 0;
-
->>>>>>> master
     public static int tailport = 6;
     public static int colorport = 8;
 }
