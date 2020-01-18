@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class DriveSub extends SubsystemBase {
   /**
@@ -20,10 +21,10 @@ public class DriveSub extends SubsystemBase {
    */
 
   private final SpeedController leftDrive =
-  new SpeedControllerGroup(new WPI_TalonSRX(3), new WPI_TalonSRX(4));
+  new SpeedControllerGroup(new WPI_TalonSRX(Constants.leftdriveport1), new WPI_TalonSRX(Constants.leftdriveport2));
 
   private final SpeedController rightDrive =
-  new SpeedControllerGroup(new WPI_TalonSRX(2), new WPI_TalonSRX(0));
+  new SpeedControllerGroup(new WPI_TalonSRX(Constants.rightdriveport1), new WPI_TalonSRX(Constants.rightdriveport2));
 
   private final DifferentialDrive tankieDrivie = new DifferentialDrive(leftDrive, rightDrive);
   
