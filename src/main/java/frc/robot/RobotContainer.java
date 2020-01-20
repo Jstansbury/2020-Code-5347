@@ -12,11 +12,14 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import frc.robot.commands.DriveDistance;
+import frc.robot.commands.ElevatorExtend;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCMD;
+import frc.robot.commands.RopeElevatorRetract;
 //import frc.robot.commands.IntakeCMD;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.TankDrive;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSub;
@@ -41,6 +44,7 @@ public class RobotContainer {
   private final Shooter m_Shooter = new Shooter();
   private final IntakeSub m_intake = new IntakeSub(); 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final Climber m_climber = new Climber();
 
 
   /**
@@ -70,7 +74,8 @@ public class RobotContainer {
     new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter)); 
     new JoystickButton(m_JoystickLeft, 1).whileHeld(new IntakeCMD(m_intake)); 
     new JoystickButton(m_JoystickLeft, 10).whenPressed(new DriveDistance(12, m_driveSub));
-
+    new JoystickButton(m_JoystickLeft, 2).whileHeld(new ElevatorExtend(m_climber));
+    new JoystickButton(m_JoystickRight, 2).whileHeld(new RopeElevatorRetract(m_climber));
   }
 
 
