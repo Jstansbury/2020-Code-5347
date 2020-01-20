@@ -25,7 +25,7 @@ public class IntakeSub extends SubsystemBase {
   }
 
   public void start(){
-    tail.set(ControlMode.PercentOutput, 1);
+    tail.set(ControlMode.PercentOutput, -1);
   }
   public void stop(){
     tail.set(ControlMode.PercentOutput, -0);

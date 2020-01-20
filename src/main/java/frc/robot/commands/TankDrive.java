@@ -45,6 +45,7 @@ public class TankDrive extends CommandBase {
   @Override
   public void execute() {
     m_drivetrain.tankdrive(m_drivetrain.Squareinput(m_left.getAsDouble()) , m_drivetrain.Squareinput(m_right.getAsDouble()));
+    m_drivetrain.getaveragedistace();
   }
 
   // Called once the command ends or is interrupted.

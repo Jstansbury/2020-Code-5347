@@ -29,7 +29,7 @@ public class Shooter extends SubsystemBase {
     Leftshoot.set(ControlMode.Velocity, velocity);
   }
   public void spinup() {
-    Leftshoot.set(ControlMode.PercentOutput, -1);
+    Leftshoot.set(ControlMode.PercentOutput, -.63);
    
   }
 

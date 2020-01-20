@@ -31,8 +31,8 @@ public class DriveSub extends SubsystemBase {
   private final DifferentialDrive tankieDrivie = new DifferentialDrive(leftDrive, rightDrive);
 
   private final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-  private final Encoder leftEncoder = new Encoder(1,2);
-  private final Encoder rightEncoder = new Encoder(3,4);
+  private final Encoder leftEncoder = new Encoder(2,3);
+  private final Encoder rightEncoder = new Encoder(0,1);
 
 
   public DriveSub(){
