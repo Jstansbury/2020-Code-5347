@@ -58,6 +58,10 @@ public class DriveSub extends SubsystemBase {
 
   }
 
+  public double setsetpoint(double distance){
+    return distance + getaveragedistace();
+  }
+
   public double getaveragedistace(){
     SmartDashboard.putNumber("avgdist", (leftEncoder.getDistance() + rightEncoder.getDistance())/2);
     return (leftEncoder.getDistance() + rightEncoder.getDistance())/2;

@@ -69,7 +69,7 @@ public class RobotContainer {
     m_driveSub));
     new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter)); 
     new JoystickButton(m_JoystickLeft, 1).whileHeld(new IntakeCMD(m_intake)); 
-    new JoystickButton(m_JoystickLeft, 10).whenPressed(new DriveDistance(12, m_driveSub));
+    new JoystickButton(m_JoystickLeft, 10).whenPressed(new DriveDistance(120, m_driveSub));
 
   }
 
