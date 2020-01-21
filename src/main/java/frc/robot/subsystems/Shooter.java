@@ -7,11 +7,11 @@
 
 package frc.robot.subsystems;
 
-
 import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
   private final TalonSRX Leftshoot = new TalonSRX(1);
@@ -23,6 +23,8 @@ public class Shooter extends SubsystemBase {
    */
 
   public void shootinit() {
+    Leftshoot.configPeakOutputForward(1, 0);
+    Leftshoot.configPeakOutputReverse(-1, 0);
   } 
   public void spinupRPM(double targRPM) {
     double velocity = 4 * targRPM * .000016667 * 48;
@@ -40,7 +42,12 @@ public class Shooter extends SubsystemBase {
 
   public Shooter() {
     Rightshoot.follow(Leftshoot);
-    Leftshoot.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+    Leftshoot.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kVelocityIdx, 0);
+    Leftshoot.configPeakOutputForward(1, 0);
+    Leftshoot.configPeakOutputReverse(-1, 0);
+    Leftshoot.config_kP(Constants.kVelocityIdx, Constants.kVelocityP, 0);
+    Leftshoot.config_kI(Constants.kVelocityIdx, Constants.kVelocityI, 0);
+    Leftshoot.config_kD(Constants.kVelocityIdx, Constants.kVelocityD, 0);
 
   }
 

@@ -21,13 +21,19 @@ public final class Constants {
 
 
 
-    public static double krotationP = 0;
+    public static double krotationP = 0.1;
     public static double krotationI = 0;
     public static double krotationD = 0;
 
     public static double kdistanceP = .12;
     public static double kdistanceI = 0;
     public static double kdistanceD = 0;
+
+
+    public static int kVelocityIdx = 0;
+    public static double kVelocityP = 0;
+    public static double kVelocityI = 0;
+    public static double kVelocityD = 0;
 
 
     public static int ColorSenPort = 5;
