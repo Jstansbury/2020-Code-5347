@@ -8,21 +8,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.liftsub;
 
-public class IntakeCMD extends CommandBase {
+public class sliftCMD extends CommandBase {
   /**
-   * Creates a new IntakeCMD.
+   * Creates a new ShooterCmd.
    */
-  private final IntakeSub m_intakeSub;
+  private final liftsub m_liftsub;
 
-
-  public IntakeCMD(IntakeSub subsystem) {
+  public sliftCMD(liftsub subsystem) {
+    m_liftsub = subsystem;
+    addRequirements(m_liftsub);
     // Use addRequirements() here to declare subsystem dependencies.
-    m_intakeSub = subsystem;
-    addRequirements(m_intakeSub);
   }
-
+ 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -31,13 +31,13 @@ public class IntakeCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakeSub.start();
+    m_liftsub.startslift();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intakeSub.stop();
+    m_liftsub.stopslift();
   }
 
   // Returns true when the command should end.
