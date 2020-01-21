@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  private final TalonSRX Leftshoot = new TalonSRX(1);
-  private final TalonSRX Rightshoot = new TalonSRX(5);
+  private final TalonSRX Leftshoot = new TalonSRX(Constants.LeftShootPort);
+  private final TalonSRX Rightshoot = new TalonSRX(Constants.RightShootPort);
   
 
   /**
@@ -31,7 +31,7 @@ public class Shooter extends SubsystemBase {
     Leftshoot.set(ControlMode.Velocity, velocity);
   }
   public void spinup() {
-    Leftshoot.set(ControlMode.PercentOutput, -.63);
+    Leftshoot.set(ControlMode.PercentOutput, -.98);
    
   }
 

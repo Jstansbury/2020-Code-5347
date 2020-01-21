@@ -43,4 +43,8 @@ public final class Constants {
     public static int rightdriveport2 = 0;
     public static int tailport = 6;
     public static int colorport = 8;
+
+    public static int LeftShootPort = 1;
+    public static int RightShootPort = 5;
+
 }
