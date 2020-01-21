@@ -8,10 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
-import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
-import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
 import edu.wpi.first.wpiutil.math.MathUtil;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveSub;
@@ -19,36 +16,33 @@ import frc.robot.subsystems.DriveSub;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class DriveDistance extends ProfiledPIDCommand {
+public class RotatetoAngle extends PIDCommand {
   /**
-   * Creates a new DriveDistance.
+   * Creates a new RotatetoAngle.
    */
-  public DriveDistance(double DistancetoDrive, DriveSub drive) {
+  public RotatetoAngle(Double Angle, DriveSub drive) {
     super(
-        // The ProfiledPIDController used by the command
-        new ProfiledPIDController(
-            // The PID gains
-            Constants.kdistanceP, Constants.kdistanceI, Constants.kdistanceD,
-            // The motion profile constraints
-            new TrapezoidProfile.Constraints(120, 240)),
+        // The controller that the command will use
+        new PIDController(Constants.krotationP, Constants.krotationI, Constants.krotationD),
         // This should return the measurement
-        drive::getaveragedistace,
-        // This should return the goal (can also be a constant)
-        drive.setsetpoint(DistancetoDrive),
+        drive::getangle,
+        // This should return the setpoint (can also be a constant)
+        Angle,
         // This uses the output
-        (output, setpoint) -> {
-              drive.arcadeDrive(MathUtil.clamp(output,-1, 1), 0);
-          // Use the output (and setpoint, if desired) here
-            },
-        drive);
+        output -> {
+          drive.arcadeDrive(0, MathUtil.clamp(output, -1, 1));
+          // Use the output here
+        });
+        addRequirements(drive);
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
     getController().setTolerance(1);
+    getController().enableContinuousInput(-180, 180);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return getController().atGoal();
+    return false;
   }
 }

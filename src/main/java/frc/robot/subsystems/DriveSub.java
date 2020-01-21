@@ -37,8 +37,8 @@ public class DriveSub extends SubsystemBase {
 
 
   public DriveSub(){
-    leftEncoder.setDistancePerPulse((Math.PI*6/5)/10.75);
-    rightEncoder.setDistancePerPulse((Math.PI*6/5)/10.75);
+    leftEncoder.setDistancePerPulse((Math.PI*6/20)/10.75);
+    rightEncoder.setDistancePerPulse((Math.PI*6/20)/10.75);
 
   }
 
