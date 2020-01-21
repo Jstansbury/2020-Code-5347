@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ColorWheel;
 
@@ -16,6 +17,10 @@ public class SpinNumber extends CommandBase {
    */
 
   private final ColorWheel m_colorwheel;
+  private Color originalColor;
+  private Color nowColor;
+  private Color beforeColor;
+  private int x;
 
   public SpinNumber(ColorWheel subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -26,12 +31,23 @@ public class SpinNumber extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Color theColor = m_colorwheel.getcolor();
+    x = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     m_colorwheel.doSpin();
+    Color nowColor = m_colorwheel.getcolor();
+    if (nowColor == beforeColor) {
+      return;
+    }
+    if (nowColor != beforeColor) {
+      if (nowColor == originalColor) {
+        x = x + 1;
+      }
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -43,6 +59,10 @@ public class SpinNumber extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if (x < 6) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
