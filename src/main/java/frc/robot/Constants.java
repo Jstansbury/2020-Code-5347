@@ -19,11 +19,11 @@ public final class Constants {
     public static int leftJoystickport = 0;
     public static int rightJoystickport = 1;
     public static int leftdriveport1 = 3;
-    public static int leftdriveport2 = 4;
+    public static int leftdriveport2 = 12;
     public static int rightdriveport1 = 2;
     public static int rightdriveport2 = 0;
 
-    public static int tailport = 6;
+    public static int tailport = 4;
 
     public static int LeftShootPort = 1;
     public static int RightShootPort = 5;

@@ -57,7 +57,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter)); 
-    new JoystickButton(m_JoystickLeft, 1).whileHeld(new IntakeCMD(m_intake)); 
+    new JoystickButton(m_JoystickRight, 2).whileHeld(new IntakeCMD(m_intake)); 
 
   }
 
