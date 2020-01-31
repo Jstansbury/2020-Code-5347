@@ -31,7 +31,6 @@ public class SpinNumber extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Color theColor = m_colorwheel.getcolor();
     x = 0;
   }
 
