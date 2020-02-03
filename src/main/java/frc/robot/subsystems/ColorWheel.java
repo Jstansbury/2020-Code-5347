@@ -34,7 +34,7 @@ public class ColorWheel extends SubsystemBase {
   }
   
   public void doSpin() {
-    wheelSpinner.set(ControlMode.PercentOutput, -.5);
+    wheelSpinner.set(ControlMode.PercentOutput, -1);
   }
 
   public void stopSpin() {

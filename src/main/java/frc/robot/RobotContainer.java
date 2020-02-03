@@ -13,10 +13,12 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.GoToColor;
 import frc.robot.commands.IntakeCMD;
 //import frc.robot.commands.IntakeCMD;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.TankDrive;
+import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSub;
@@ -40,6 +42,7 @@ public class RobotContainer {
   private final DriveSub m_driveSub = new DriveSub();
   private final Shooter m_Shooter = new Shooter();
   private final IntakeSub m_intake = new IntakeSub(); 
+  private final ColorWheel m_colorwheel = new ColorWheel();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
@@ -58,7 +61,7 @@ public class RobotContainer {
    * Use this method to define your button->command mappings.  Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
-   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.x 
    */
   private void configureButtonBindings() {
     //new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(100, m_Shooter)); 
@@ -68,8 +71,9 @@ public class RobotContainer {
     output -> m_driveSub.arcadeDrive(m_JoystickLeft.getY(), output),
     m_driveSub));
     new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter)); 
-    new JoystickButton(m_JoystickLeft, 1).whileHeld(new IntakeCMD(m_intake)); 
+    new JoystickButton(m_JoystickLeft, 2).whileHeld(new IntakeCMD(m_intake)); 
     new JoystickButton(m_JoystickLeft, 10).whenPressed(new DriveDistance(120, m_driveSub));
+    new JoystickButton(m_JoystickLeft, 8).whenPressed(new GoToColor(m_colorwheel));
 
   }
 

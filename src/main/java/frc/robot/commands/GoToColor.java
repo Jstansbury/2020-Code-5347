@@ -41,7 +41,7 @@ public class GoToColor extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    gameColor = DriverStation.getInstance().getGameSpecificMessage();
+    gameColor = "Y"; //DriverStation.getInstance().getGameSpecificMessage();
     x = 0;
 
     m_colorMatcher.addColorMatch(kBlueTarget);
@@ -54,10 +54,10 @@ public class GoToColor extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    final Color detectedColor = m_colorwheel.getcolor();
+    Color detectedColor = m_colorwheel.getcolor();
     m_colorwheel.doSpin();
 
-    final ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+    ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
     
     if (match.color == kBlueTarget) {
       colorString = "Blue";
@@ -80,14 +80,15 @@ public class GoToColor extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(final boolean interrupted) {
+  public void end(boolean interrupted) {
+    m_colorwheel.stopSpin();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {  
 
-    if (gameColor == "B") {
+    if (gameColor == "Y") {
       if (colorString == "Red") { //now color is an int not a b, put numbers here
           return true;
       }
@@ -96,7 +97,7 @@ public class GoToColor extends CommandBase {
       }
     }
 
-    else if (gameColor == "B") {
+    else if (gameColor == "G") {
       if (colorString == "Yellow") { //now color is an int not a b, put nu mbers here
           return true;
       }
@@ -105,7 +106,7 @@ public class GoToColor extends CommandBase {
       }
     }
 
-    else if (gameColor == "B") {
+    else if (gameColor == "R") {
       if (colorString == "Green") { //now color is an int not a b, put numbers here
           return true;
       }
@@ -114,7 +115,7 @@ public class GoToColor extends CommandBase {
       }
     }
 
-    else if (gameColor == "B") {
+    else if (gameColor == "Y") {
       if (colorString == "Blue") { //now color is an int not a b, put numbers here
           return true;
       }
