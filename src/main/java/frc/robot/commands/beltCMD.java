@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.belt;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
@@ -37,20 +38,20 @@ public class beltCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      if (subsystem.bottomisPressed()) {
-          subsystem.startbelt();
+      if (m_subsystem.bottomisPressed()) {
+          m_subsystem.startbelt();
       }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-      subsytem.stopbelt();
+    m_subsystem.stopbelt();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return subsystem.topisPressed();
+    return m_subsystem.topisPressed();
   }
 }
