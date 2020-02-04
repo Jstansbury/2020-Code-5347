@@ -47,11 +47,7 @@ public class beltCMD extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-<<<<<<< HEAD
-      m_subsystem.stopbelt();
-=======
     m_subsystem.stopbelt();
->>>>>>> 2db400385646d4f3d84d3130b109e1206c61e73b
   }
 
   // Returns true when the command should end.
