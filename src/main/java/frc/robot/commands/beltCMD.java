@@ -41,6 +41,8 @@ public class beltCMD extends CommandBase {
   public void execute() {
       if (m_subsystem.bottomisPressed()) {
           m_subsystem.startbelt();
+      } else {
+          m_subsystem.stopbelt();
       }
   }
 
@@ -53,6 +55,7 @@ public class beltCMD extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_subsystem.topisPressed();
+    //return m_subsystem.topisPressed();
+    return false;
   }
 }

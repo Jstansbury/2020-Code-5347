@@ -8,6 +8,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.belt;
 
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -17,9 +19,9 @@ public class Matthewisbestfromjayson extends ParallelCommandGroup {
   /**
    * Creates a new Matthewisbestfromjayson.
    */
-  public Matthewisbestfromjayson() {
-    // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());super();
-    super(new IntakeCMD(), new beltCMD(subsystem))
+  public Matthewisbestfromjayson(belt m_Belt, IntakeSub m_intakesub) {
+    addCommands(
+        new beltCMD(m_Belt),
+        new IntakeCMD(m_intakesub));
   }
 }

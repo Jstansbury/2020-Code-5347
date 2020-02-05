@@ -17,20 +17,15 @@ import frc.robot.Constants;
 
 public class belt extends SubsystemBase {
 
-  private final DigitalInput bottomLim = new DigitalInput(4);
-  private final DigitalInput topLim = new DigitalInput(5);
+  private final DigitalInput bottomLim = new DigitalInput(Constants.BLimport);
   private final TalonSRX belt = new TalonSRX(Constants.beltsport);
   public belt() {
   }
   public boolean bottomisPressed() {
     return bottomLim.get();
   }
-  public boolean topisPressed() {
-      return topLim.get();
-  }
-
   public void startbelt(){
-    belt.set(ControlMode.PercentOutput, 0.25);
+    belt.set(ControlMode.PercentOutput, 1);
   }
   public void stopbelt(){
     belt.set(ControlMode.PercentOutput, -0);
