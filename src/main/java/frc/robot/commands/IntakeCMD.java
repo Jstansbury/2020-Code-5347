@@ -18,7 +18,7 @@ public class IntakeCMD extends CommandBase {
    */
 
   AnalogPotentiometer pot = new AnalogPotentiometer(Constants.potentiometerport, 180, 30);
-  double x = 0;
+  
 
   private final IntakeSub m_intakeSub;
 
@@ -32,7 +32,7 @@ public class IntakeCMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    x = pot.get();
+    public double x = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -40,6 +40,8 @@ public class IntakeCMD extends CommandBase {
   public void execute() {
     m_intakeSub.start();
     x = pot.get();
+
+    SmartDashboard.putNumber(x);
   }
 
   // Called once the command ends or is interrupted.
