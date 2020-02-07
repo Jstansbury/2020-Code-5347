@@ -42,8 +42,6 @@ public class RobotContainer {
   private final liftsub m_liftsub = new liftsub();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  AnalogPotentiometer pot = new AnalogPotentiometer(Constants.potentiometerport, 180, 30);
-
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
