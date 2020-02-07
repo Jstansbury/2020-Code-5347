@@ -33,5 +33,9 @@ public final class Constants {
     public static int rollerport = 8;
 
     public static int LeftShootPort = 1;
-    public static int RightShootPort = 2;
+    public static int RightShootPort = 5;
+    public static int actuatorport = 7;
+    
+    public static int potentiometerport = 6;
+
 }

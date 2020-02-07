@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -16,9 +18,11 @@ import frc.robot.commands.Matthewisbestfromjayson;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.beltCMD;
+import frc.robot.commands.sliftCMD;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.liftsub;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.belt;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -40,6 +44,7 @@ public class RobotContainer {
   private final IntakeSub m_intake = new IntakeSub(); 
   private final belt m_Belt = new belt();
 
+  private final liftsub m_liftsub = new liftsub();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
@@ -63,7 +68,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter)); 
-    new JoystickButton(m_JoystickRight, 2).whileHeld(new IntakeCMD(m_intake)); 
+    new JoystickButton(m_JoystickLeft, 1).whileHeld(new IntakeCMD(m_intake)); 
+    new JoystickButton(m_JoystickLeft, 10).whileHeld(new sliftCMD(m_liftsub));
 
   }
 
