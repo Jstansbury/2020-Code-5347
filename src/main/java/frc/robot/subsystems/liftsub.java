@@ -18,6 +18,9 @@ public class liftsub extends SubsystemBase {
     private final TalonSRX actuator = new TalonSRX(Constants.actuatorport);
   public liftsub() {
 
+  } 
+  public void eqPot(int a, int b) {
+    
   }
   public void startslift() {
       actuator.set(ControlMode.PercentOutput, 0.5);
