@@ -38,4 +38,6 @@ public final class Constants {
     public static double lowerlimit = 120;
     public static double upperlimit = 351;    
 
+ 
+    public static int TestMototPort = 2; 
 }

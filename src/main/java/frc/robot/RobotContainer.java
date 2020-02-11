@@ -60,7 +60,6 @@ public class RobotContainer {
     // Configure the button bindings
     m_driveSub.setDefaultCommand(new TankDrive(() -> m_JoystickLeft.getY(),
     () -> m_JoystickRight.getY(), m_driveSub));
-
     m_Belt.setDefaultCommand(new beltCMD(m_Belt));
 
     configureButtonBindings();

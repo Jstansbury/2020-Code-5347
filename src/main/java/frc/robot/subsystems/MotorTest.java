@@ -10,26 +10,30 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class belt extends SubsystemBase {
+public class MotorTest extends SubsystemBase {
+  /**
+   * Creates a new MotorTest.
+   */
+  private final TalonSRX TestMotor = new TalonSRX(Constants.TestMototPort);
+  public MotorTest() {
 
-  private final DigitalInput bottomLim = new DigitalInput(Constants.BLimport);
-  private final TalonSRX belt = new TalonSRX(Constants.beltsport);
-  public belt() {
   }
-  public boolean bottomisPressed() {
-    return bottomLim.get();
+
+  public void StartMotorF(){
+    TestMotor.set(ControlMode.PercentOutput, 0.7);
+
   }
-  public void startbelt(){
-    belt.set(ControlMode.PercentOutput, -0.7);
+  public void StartMotorB(){
+    TestMotor.set(ControlMode.PercentOutput, -0.7);
+
   }
-  public void stopbelt(){
-    belt.set(ControlMode.PercentOutput, -0);
+  public void StopMotor(){
+    TestMotor.set(ControlMode.PercentOutput, 0);
   }
+
 
   @Override
   public void periodic() {
