@@ -16,20 +16,26 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static int leftJoystickport = 0;
+    public static int BLimport = 4;
+	  public static int leftJoystickport = 0;
     public static int rightJoystickport = 1;
     public static int leftdriveport1 = 3;
     public static int leftdriveport2 = 4;
     public static int rightdriveport1 = 2;
     public static int rightdriveport2 = 0;
 
-    public static int tailport = 6;
+    public static int tailport = 6;'
+    public static int beltsport = 9;
+    public static int rollerport = 8;
+
     public static int LeftShootPort = 1;
     public static int RightShootPort = 5;
     public static int actuatorport = 7;
     
     public static int potentiometerport = 0;
     public static double lowerlimit = 120;
-    public static double lowerlimitV2 = 110;
-    public static double upperlimit = 351;
+    public static double upperlimit = 351;    
+
+    public static int LeftShootPort = 1;
+    public static int RightShootPort = 5;
 }

@@ -10,23 +10,23 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class IntakeSub extends SubsystemBase {
-  
-  private final TalonSRX tail = new TalonSRX(Constants.tailport);
-  public IntakeSub() {
+public class RollerSub extends SubsystemBase {
+  /**
+   * Creates a new RollerSub.
+   */
+  private final TalonSRX roller = new TalonSRX(Constants.rollerport);
+  public RollerSub() {
   }
 
-
-  public void startTail(){
-    tail.set(ControlMode.PercentOutput, 1);
+  public void startRoller(){
+    roller.set(ControlMode.PercentOutput, 1);
   }
-  public void stopTail(){
-    tail.set(ControlMode.PercentOutput, -0);
+
+  public void stopRoller(){
+    roller.set(ControlMode.PercentOutput, 0);
   }
 
   @Override

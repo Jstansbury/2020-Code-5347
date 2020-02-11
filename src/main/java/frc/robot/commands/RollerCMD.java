@@ -7,25 +7,20 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.RollerSub;
 
-public class IntakeCMD extends CommandBase {
+public class RollerCMD extends CommandBase {
   /**
-   * Creates a new IntakeCMD.
-   */  
+   * Creates a new RollerCMD.
+   */
 
-  private final IntakeSub m_intakeSub;
+  private final RollerSub m_rollersub;
 
-
-
-  public IntakeCMD(IntakeSub subsystem) {
+  public RollerCMD(RollerSub subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_intakeSub = subsystem;
-    addRequirements(m_intakeSub);
+    m_rollersub = subsystem;
+    addRequirements(m_rollersub);
   }
 
   // Called when the command is initially scheduled.
@@ -36,13 +31,13 @@ public class IntakeCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakeSub.start();
+    m_rollersub.startRoller();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intakeSub.stopTail();
+    m_rollersub.stopRoller();
   }
 
   // Returns true when the command should end.

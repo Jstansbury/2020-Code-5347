@@ -15,18 +15,20 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class IntakeSub extends SubsystemBase {
-  
-  private final TalonSRX tail = new TalonSRX(Constants.tailport);
-  public IntakeSub() {
-  }
+public class belt extends SubsystemBase {
 
-
-  public void startTail(){
-    tail.set(ControlMode.PercentOutput, 1);
+  private final DigitalInput bottomLim = new DigitalInput(Constants.BLimport);
+  private final TalonSRX belt = new TalonSRX(Constants.beltsport);
+  public belt() {
   }
-  public void stopTail(){
-    tail.set(ControlMode.PercentOutput, -0);
+  public boolean bottomisPressed() {
+    return bottomLim.get();
+  }
+  public void startbelt(){
+    belt.set(ControlMode.PercentOutput, 1);
+  }
+  public void stopbelt(){
+    belt.set(ControlMode.PercentOutput, -0);
   }
 
   @Override
