@@ -28,7 +28,8 @@ public final class Constants {
     public static int RightShootPort = 5;
     public static int actuatorport = 7;
     
-    public static int potentiometerport = 6;
-    public static double lowerlimit = 46;
-    public static double upperlimit;
+    public static int potentiometerport = 0;
+    public static double lowerlimit = 120;
+    public static double lowerlimitV2 = 110;
+    public static double upperlimit = 351;
 }

@@ -23,10 +23,12 @@ public class liftsub extends SubsystemBase {
   public liftsub() {
 
   }
-  public void startslift() {
-      actuator.set(ControlMode.PercentOutput, -0.5);
+  public void startsliftUP() {
+      actuator.set(ControlMode.PercentOutput, 0.7);
   }
-
+  public void startsliftDOWN() {
+    actuator.set(ControlMode.PercentOutput, -0.7);
+}
   public void stopslift() {
       actuator.set(ControlMode.PercentOutput, 0);
   }

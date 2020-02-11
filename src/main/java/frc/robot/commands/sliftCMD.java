@@ -35,8 +35,14 @@ public class sliftCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_liftsub.startslift();
+    m_liftsub.startsliftDOWN();
     m_liftsub.logPot();
+    if (m_liftsub.logPot() > Constants.upperlimit){
+      m_liftsub.startsliftUP();
+    }
+    if (m_liftsub.logPot() < Constants.lowerlimit){
+      m_liftsub.startsliftDOWN();
+    }
     SmartDashboard.putNumber("Potentiometer5", 5);
     
   }
@@ -50,11 +56,6 @@ public class sliftCMD extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(m_liftsub.logPot() < Constants.lowerlimit){
-      return true;
-    } else if (m_liftsub.logPot() > Constants.upperlimit){
-      return false;
-    }
     return false;
   }
 }
