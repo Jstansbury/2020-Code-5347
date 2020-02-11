@@ -14,6 +14,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCMD;
+//import frc.robot.commands.Matthewisbestfromjayson;
+import frc.robot.commands.ShooterCmd;
+import frc.robot.commands.TankDrive;
+//import frc.robot.commands.beltCMD;
+import frc.robot.commands.sliftCMD;
 import frc.robot.commands.Matthewisbestfromjayson;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.TankDrive;
@@ -24,6 +29,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSub;
 import frc.robot.subsystems.liftsub;
 import frc.robot.subsystems.Shooter;
+//import frc.robot.subsystems.belt;
 import frc.robot.subsystems.belt;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -42,9 +48,8 @@ public class RobotContainer {
   private final DriveSub m_driveSub = new DriveSub();
   private final Shooter m_Shooter = new Shooter();
   private final IntakeSub m_intake = new IntakeSub(); 
-  private final belt m_Belt = new belt();
-
   private final liftsub m_liftsub = new liftsub();
+  private final belt m_Belt = new belt();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
 
@@ -55,6 +60,7 @@ public class RobotContainer {
     // Configure the button bindings
     m_driveSub.setDefaultCommand(new TankDrive(() -> m_JoystickLeft.getY(),
     () -> m_JoystickRight.getY(), m_driveSub));
+
     m_Belt.setDefaultCommand(new beltCMD(m_Belt));
 
     configureButtonBindings();
@@ -69,7 +75,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter)); 
     new JoystickButton(m_JoystickLeft, 1).whileHeld(new IntakeCMD(m_intake)); 
-    new JoystickButton(m_JoystickLeft, 10).whileHeld(new sliftCMD(m_liftsub));
+    new JoystickButton(m_JoystickLeft, 2).whileHeld(new sliftCMD(m_liftsub));
 
   }
 

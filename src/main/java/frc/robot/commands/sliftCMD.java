@@ -7,11 +7,15 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.liftsub;
 
 public class sliftCMD extends CommandBase {
+
   /**
    * Creates a new ShooterCmd.
    */
@@ -31,7 +35,16 @@ public class sliftCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_liftsub.startslift();
+    m_liftsub.startsliftDOWN();
+    m_liftsub.logPot();
+    if (m_liftsub.logPot() > Constants.upperlimit){
+      m_liftsub.startsliftUP();
+    }
+    if (m_liftsub.logPot() < Constants.lowerlimit){
+      m_liftsub.startsliftDOWN();
+    }
+    SmartDashboard.putNumber("Potentiometer5", 5);
+    
   }
 
   // Called once the command ends or is interrupted.

@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSub;
@@ -15,12 +16,10 @@ import frc.robot.subsystems.IntakeSub;
 public class IntakeCMD extends CommandBase {
   /**
    * Creates a new IntakeCMD.
-   */
-
-  AnalogPotentiometer pot = new AnalogPotentiometer(Constants.potentiometerport, 180, 30);
-  double x = 0;
+   */  
 
   private final IntakeSub m_intakeSub;
+
 
 
   public IntakeCMD(IntakeSub subsystem) {
@@ -32,14 +31,12 @@ public class IntakeCMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    x = pot.get();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     m_intakeSub.startTail();
-    x = pot.get();
   }
 
   // Called once the command ends or is interrupted.
