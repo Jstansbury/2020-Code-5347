@@ -29,5 +29,6 @@ public final class Constants {
     public static int actuatorport = 7;
     
     public static int potentiometerport = 6;
-
+    public static double lowerlimit = 46;
+    public static double upperlimit;
 }

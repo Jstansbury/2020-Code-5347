@@ -16,10 +16,7 @@ import frc.robot.subsystems.IntakeSub;
 public class IntakeCMD extends CommandBase {
   /**
    * Creates a new IntakeCMD.
-   */
-
-  AnalogPotentiometer pot = new AnalogPotentiometer(Constants.potentiometerport, 360, 30);
-  
+   */  
 
   private final IntakeSub m_intakeSub;
 
@@ -41,7 +38,7 @@ public class IntakeCMD extends CommandBase {
   public void execute() {
     m_intakeSub.start();
 
-    SmartDashboard.putNumber("Potentiometer", pot.get());
+    
   }
 
   // Called once the command ends or is interrupted.
