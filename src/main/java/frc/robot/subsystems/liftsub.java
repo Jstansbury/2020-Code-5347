@@ -10,17 +10,25 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import java.lang.Math;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class liftsub extends SubsystemBase {
     // creates
     private final TalonSRX actuator = new TalonSRX(Constants.actuatorport);
-  public liftsub() {
+    private final int var = 0;
 
-  } 
-  public void eqPot(int a, int b) {
-    
+  public liftsub() {
+    // y=-23.6*(x)+822.2 voltage 
+  } // c == 25" b == 20" 
+  public double eqPotH(int angle) {
+    return ((1000*Math.sin(angle)- 225)*-1);
+  }
+
+  public double potVoltage(int var) {
+    return 23.6*eqPotH(var)+822.2;
   }
   public void startslift() {
       actuator.set(ControlMode.PercentOutput, 0.5);
