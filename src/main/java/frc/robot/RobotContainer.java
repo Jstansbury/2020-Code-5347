@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.AqPID;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCMD;
 import frc.robot.commands.ShooterCmd;
@@ -62,7 +63,7 @@ public class RobotContainer {
     new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter)); 
     new JoystickButton(m_JoystickLeft, 1).whileHeld(new IntakeCMD(m_intake)); 
     new JoystickButton(m_JoystickLeft, 10).whileHeld(new sliftCMD(m_liftsub));
-
+    new JoystickButton(m_JoystickLeft, 2).whileHeld(new AqPID(45.00, m_liftsub));
   }
 
 

@@ -12,30 +12,45 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import java.lang.Math;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class liftsub extends SubsystemBase {
+  AnalogPotentiometer pot = new AnalogPotentiometer(Constants.potentiometerport, 360, 30);
     // creates
     private final TalonSRX actuator = new TalonSRX(Constants.actuatorport);
-    private final int var = 0;
-
   public liftsub() {
     // y=-23.6*(x)+822.2 voltage 
   } // c == 25" b == 20" 
-  public double eqPotH(int angle) {
+  public double eqPotH(Double angle) {
     return ((1000*Math.sin(angle)- 225)*-1);
   }
 
-  public double potVoltage(int var) {
-    return 23.6*eqPotH(var)+822.2;
+  public double potVoltage(double angle) {
+    angle = (1000*Math.sin(angle)- 225)*-1;
+    return 23.6*eqPotH(angle)+822.2;
   }
-  public void startslift() {
-      actuator.set(ControlMode.PercentOutput, 0.5);
+
+  public double voltageofPot() {
+    return 0;
+
+  }
+  public void startslift(double speed) {
+      actuator.set(ControlMode.PercentOutput, speed);
   }
 
   public void stopslift() {
       actuator.set(ControlMode.PercentOutput, 0);
+  }
+  public double logPot() {
+    SmartDashboard.putNumber("Potentiometer", pot.get());
+    return pot.get();
+  }
+
+  public double angle(double angle) {
+    return angle;
   }
 
   @Override

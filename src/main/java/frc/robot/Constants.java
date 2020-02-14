@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -24,9 +26,13 @@ public final class Constants {
     public static int rightdriveport2 = 0;
 
     public static int tailport = 6;
-
+  
     public static int LeftShootPort = 1;
     public static int RightShootPort = 5;
 	public static int actuatorport = 7;
+	public static int kactuatorP = 0;
+	public static int kactuatorI = 0;
+	public static int kactuatorD = 0;
+	public static int potentiometerport = 0;
 
 }
