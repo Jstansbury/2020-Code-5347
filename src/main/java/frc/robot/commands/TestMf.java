@@ -7,25 +7,18 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.MotorTest;
 
-public class IntakeCMD extends CommandBase {
+public class TestMf extends CommandBase {
   /**
-   * Creates a new IntakeCMD.
-   */  
-
-  private final IntakeSub m_intakeSub;
-
-
-
-  public IntakeCMD(IntakeSub subsystem) {
+   * Creates a new t.
+   */
+  private final MotorTest m_MotorTest;
+  public TestMf(MotorTest subsystem) {
+    m_MotorTest = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    m_intakeSub = subsystem;
-    addRequirements(m_intakeSub);
+    addRequirements(m_MotorTest);
   }
 
   // Called when the command is initially scheduled.
@@ -36,14 +29,15 @@ public class IntakeCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakeSub.startTail();
+    m_MotorTest.StartMotorF();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intakeSub.stopTail();
+    m_MotorTest.StopMotor();
   }
+
 
   // Returns true when the command should end.
   @Override

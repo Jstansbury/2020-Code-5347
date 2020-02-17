@@ -25,19 +25,22 @@ public class Shooter extends SubsystemBase {
   public void shootinit() {
     Leftshoot.configPeakOutputForward(1, 0);
     Leftshoot.configPeakOutputReverse(-1, 0);
+    //Rightshoot.follow(Leftshoot);
   } 
   public void spinupRPM(double targRPM) {
     double velocity = 4 * targRPM * .000016667 * 48;
     Leftshoot.set(ControlMode.Velocity, velocity);
   }
   public void spinup() {
-    Leftshoot.set(ControlMode.PercentOutput, -.98);
-   
+    Leftshoot.set(ControlMode.PercentOutput, .98);
+    Rightshoot.set(ControlMode.PercentOutput, .98);
+
   }
 
   public void stop() {
     Leftshoot.set(ControlMode.PercentOutput, 0);
-   
+    Rightshoot.set(ControlMode.PercentOutput, 0);
+
   }
 
   public Shooter() {
