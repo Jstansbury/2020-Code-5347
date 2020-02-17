@@ -14,14 +14,14 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.liftsub;
 
-public class sliftCMD extends CommandBase {
+public class sliftDownCMD extends CommandBase {
 
   /**
    * Creates a new ShooterCmd.
    */
   private final liftsub m_liftsub;
 
-  public sliftCMD(liftsub subsystem) {
+  public sliftDownCMD(liftsub subsystem) {
     m_liftsub = subsystem;
     addRequirements(m_liftsub);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -29,7 +29,7 @@ public class sliftCMD extends CommandBase {
  
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void initialize(){
   }
 
   // Called every time the scheduler runs while the command is scheduled.
