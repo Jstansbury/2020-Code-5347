@@ -70,7 +70,7 @@ public class RobotContainer {
      0,
     output -> m_driveSub.arcadeDrive(m_JoystickLeft.getY(), output),
     m_driveSub));
-    new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter)); 
+    new JoystickButton(m_JoystickRight, 1).whileHeld(new ShooterCmd(m_Shooter, 1000)); 
     new JoystickButton(m_JoystickLeft, 2).whileHeld(new IntakeCMD(m_intake)); 
     new JoystickButton(m_JoystickLeft, 10).whenPressed(new DriveDistance(120, m_driveSub));
     new JoystickButton(m_JoystickLeft, 8).whenPressed(new GoToColor(m_colorwheel));
