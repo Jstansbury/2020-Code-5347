@@ -23,16 +23,18 @@ public class Shooter extends SubsystemBase {
    */
 
   public void shootinit() {
-    Rightshoot.follow(Leftshoot);
+    //Rightshoot.follow(Leftshoot);
   } 
   public void spinup() {
-    Leftshoot.set(ControlMode.PercentOutput, -.98);
-   
+    Leftshoot.set(ControlMode.PercentOutput, .98);
+    Rightshoot.set(ControlMode.PercentOutput, .98);
+
   }
 
   public void stop() {
     Leftshoot.set(ControlMode.PercentOutput, 0);
-   
+    Rightshoot.set(ControlMode.PercentOutput, 0);
+
   }
 
   public Shooter() {
