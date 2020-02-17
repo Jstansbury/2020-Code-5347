@@ -35,6 +35,7 @@ public class ShooterCmd extends CommandBase {
   public void execute() {
     //m_Shooter.spinup();
     m_Shooter.spinupRPM(m_velocity);
+  
   }
 
   // Called once the command ends or is interrupted.

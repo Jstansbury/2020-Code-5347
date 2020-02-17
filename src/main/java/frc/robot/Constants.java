@@ -63,4 +63,14 @@ public final class Constants {
     public static double kVelocityI = 0;
     public static double kVelocityD = 0;
 
+    public static int colorport = 1;
+
+    public static double krotationP = 0;
+    public static double krotationI = 0;
+    public static double krotationD = 0;
+
+    public static double kdistanceP = 0;
+    public static double kdistanceI = 0;
+    public static double kdistanceD = 0;
+
 }
