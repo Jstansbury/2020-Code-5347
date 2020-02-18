@@ -28,7 +28,7 @@ public class Shooter extends SubsystemBase {
     //Rightshoot.follow(Leftshoot);
   } 
   public void spinupRPM(double targRPM) {
-    double velocity = (targRPM * 12 / 600);
+    double velocity = (targRPM);
     Leftshoot.set(ControlMode.Velocity, velocity);
   }
   public void spinup() {
@@ -39,7 +39,7 @@ public class Shooter extends SubsystemBase {
 
   public void stop() {
     Leftshoot.set(ControlMode.PercentOutput, 0);
-    Rightshoot.set(ControlMode.PercentOutput, 0);
+    //Rightshoot.set(ControlMode.PercentOutput, 0);
 
   }
 
