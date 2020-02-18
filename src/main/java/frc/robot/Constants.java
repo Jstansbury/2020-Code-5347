@@ -59,9 +59,12 @@ public final class Constants {
     public static int Uts2 = 7;
 
     public static int kVelocityIdx = 0;
-    public static double kVelocityP = 0;
+    public static double kVelocityP = 6;
     public static double kVelocityI = 0;
     public static double kVelocityD = 0;
+    public static double kVelocityF = 0;
+    public static int kTimeoutMs =0;
+
 
     public static int colorport = 1;
 

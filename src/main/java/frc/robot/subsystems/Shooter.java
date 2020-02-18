@@ -28,7 +28,7 @@ public class Shooter extends SubsystemBase {
     //Rightshoot.follow(Leftshoot);
   } 
   public void spinupRPM(double targRPM) {
-    double velocity = 4 * targRPM * .000016667 * 48;
+    double velocity = (targRPM * 12 / 600);
     Leftshoot.set(ControlMode.Velocity, velocity);
   }
   public void spinup() {
@@ -44,13 +44,20 @@ public class Shooter extends SubsystemBase {
   }
 
   public Shooter() {
-    Rightshoot.follow(Leftshoot);
+    Leftshoot.configFactoryDefault();
     Leftshoot.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, Constants.kVelocityIdx, 0);
-    Leftshoot.configPeakOutputForward(1, 0);
-    Leftshoot.configPeakOutputReverse(-1, 0);
-    Leftshoot.config_kP(Constants.kVelocityIdx, Constants.kVelocityP, 0);
-    Leftshoot.config_kI(Constants.kVelocityIdx, Constants.kVelocityI, 0);
-    Leftshoot.config_kD(Constants.kVelocityIdx, Constants.kVelocityD, 0);
+    Leftshoot.setSensorPhase(true);
+    Leftshoot.configNominalOutputForward(0, Constants.kTimeoutMs);
+		Leftshoot.configNominalOutputReverse(0, Constants.kTimeoutMs);
+		Leftshoot.configPeakOutputForward(1, Constants.kTimeoutMs);
+		Leftshoot.configPeakOutputReverse(-1, Constants.kTimeoutMs);
+    Leftshoot.config_kP(Constants.kVelocityIdx, Constants.kVelocityP);
+    Leftshoot.config_kI(Constants.kVelocityIdx, Constants.kVelocityI);
+    Leftshoot.config_kD(Constants.kVelocityIdx, Constants.kVelocityD);
+    Leftshoot.config_kF(Constants.kVelocityIdx, Constants.kVelocityF);
+    Rightshoot.follow(Leftshoot);
+
+
 
   }
 
