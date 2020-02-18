@@ -12,21 +12,30 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class IntakeSub extends SubsystemBase {
-  
-  private final TalonSRX tail = new TalonSRX(Constants.tailport);
-  public IntakeSub() {
-  }
+public class belt extends SubsystemBase {
 
-
-  public void startTail(){
-    tail.set(ControlMode.PercentOutput, -.6);
+  private final DigitalInput bottomLim = new DigitalInput(Constants.BLimport);
+  private final TalonSRX belt = new TalonSRX(Constants.beltsport);
+  private final Ultrasonic UTS = new Ultrasonic(Constants.Uts1, Constants.Uts2);
+  public belt() {
   }
-  public void stopTail(){
-    tail.set(ControlMode.PercentOutput, -0);
+  public boolean bottomisPressed() {
+    // if(UTS.getRangeMM() < 30){
+    //   return false;
+    // } else {
+    //   return true;
+    // }
+    return bottomLim.get();
+  }
+  public void startbelt(){
+    belt.set(ControlMode.PercentOutput, 0.7);
+  }
+  public void stopbelt(){
+    belt.set(ControlMode.PercentOutput, -0);
   }
 
   @Override

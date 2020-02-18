@@ -18,21 +18,46 @@ import edu.wpi.first.wpilibj.AnalogInput;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static int leftJoystickport = 0;
+    public static int BLimport = 5;
+	public static int leftJoystickport = 0;
     public static int rightJoystickport = 1;
-    public static int leftdriveport1 = 3;
-    public static int leftdriveport2 = 4;
-    public static int rightdriveport1 = 2;
-    public static int rightdriveport2 = 0;
+    public static int LogibleghPort = 2;
 
-    public static int tailport = 6;
-  
-    public static int LeftShootPort = 1;
+
+    public static int leftdriveport1 = 8;
+    public static int leftdriveport2 = 7;
+    public static int rightdriveport1 = 1;
+    public static int rightdriveport2 = 2;
+
+    public static int tailport = 4;
+    public static int beltsport = 9;
+    public static int rollerport = 6;
+
+    public static int LeftShootPort = 3;
     public static int RightShootPort = 5;
-	public static int actuatorport = 7;
-	public static int kactuatorP = 0;
-	public static int kactuatorI = 0;
-	public static int kactuatorD = 0;
-	public static int potentiometerport = 0;
+    public static int actuatorport = 0;
+    
+    public static int potentiometerport = 0;
+    public static double lowerlimit = 158;
+    public static double upperlimit = 375;  
+    
+    public static int CompressorPort = 11;
+
+    public static int TestMototPort = 2; 
+
+    public static double kPa = .026;
+    public static double kIa = 0;
+    public static double kDa = 0;
+
+    public static int encoderleftport1 = 0;
+    public static int encoderleftport2 = 1;
+    public static int encoderrightport1 = 2;
+    public static int encoderrightport2 = 3;
+
+    public static int SolF = 0;
+    public static int SolR = 1;
+
+    public static int Uts1 = 6;
+    public static int Uts2 = 7;
 
 }

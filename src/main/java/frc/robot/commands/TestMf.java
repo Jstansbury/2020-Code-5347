@@ -8,21 +8,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.liftsub;
+import frc.robot.subsystems.MotorTest;
 
-public class sliftCMD extends CommandBase {
+public class TestMf extends CommandBase {
   /**
-   * Creates a new ShooterCmd.
+   * Creates a new t.
    */
-  private final liftsub m_liftsub;
-
-  public sliftCMD(liftsub subsystem) {
-    m_liftsub = subsystem;
-    addRequirements(m_liftsub);
+  private final MotorTest m_MotorTest;
+  public TestMf(MotorTest subsystem) {
+    m_MotorTest = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_MotorTest);
   }
- 
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -31,14 +29,15 @@ public class sliftCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_liftsub.startslift(0.5);
+    m_MotorTest.StartMotorF();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_liftsub.stopslift();
+    m_MotorTest.StopMotor();
   }
+
 
   // Returns true when the command should end.
   @Override

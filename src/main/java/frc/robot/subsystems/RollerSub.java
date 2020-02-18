@@ -7,38 +7,26 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.*;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Shooter extends SubsystemBase {
-  private final TalonSRX Leftshoot = new TalonSRX(Constants.LeftShootPort);
-  private final TalonSRX Rightshoot = new TalonSRX(Constants.RightShootPort);
-  
-
+public class RollerSub extends SubsystemBase {
   /**
-   * Creates a new Shooter.
+   * Creates a new RollerSub.
    */
-
-  public void shootinit() {
-    //Rightshoot.follow(Leftshoot);
-  } 
-  public void spinup() {
-    Leftshoot.set(ControlMode.PercentOutput, .98);
-    Rightshoot.set(ControlMode.PercentOutput, .98);
-
+  private final TalonSRX roller = new TalonSRX(Constants.rollerport);
+  public RollerSub() {
   }
 
-  public void stop() {
-    Leftshoot.set(ControlMode.PercentOutput, 0);
-    Rightshoot.set(ControlMode.PercentOutput, 0);
-
+  public void startRoller(){
+    roller.set(ControlMode.PercentOutput, 1);
   }
 
-  public Shooter() {
-
+  public void stopRoller(){
+    roller.set(ControlMode.PercentOutput, 0);
   }
 
   @Override

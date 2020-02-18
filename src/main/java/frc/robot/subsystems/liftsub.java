@@ -10,8 +10,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import java.lang.Math;
-
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -37,10 +35,12 @@ public class liftsub extends SubsystemBase {
     return 0;
 
   }
-  public void startslift(double speed) {
-      actuator.set(ControlMode.PercentOutput, speed);
+  public void startsliftUP() {
+      actuator.set(ControlMode.PercentOutput, 0.7);
   }
-
+  public void startsliftDOWN() {
+    actuator.set(ControlMode.PercentOutput, -0.7);
+}
   public void stopslift() {
       actuator.set(ControlMode.PercentOutput, 0);
   }
@@ -48,11 +48,6 @@ public class liftsub extends SubsystemBase {
     SmartDashboard.putNumber("Potentiometer", pot.get());
     return pot.get();
   }
-
-  public double angle(double angle) {
-    return angle;
-  }
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

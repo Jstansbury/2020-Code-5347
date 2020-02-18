@@ -11,38 +11,46 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.liftsub;
 
-public class IntakeCMD extends CommandBase {
+public class sliftDownCMD extends CommandBase {
+
   /**
-   * Creates a new IntakeCMD.
-   */  
+   * Creates a new ShooterCmd.
+   */
+  private final liftsub m_liftsub;
 
-  private final IntakeSub m_intakeSub;
-
-
-
-  public IntakeCMD(IntakeSub subsystem) {
+  public sliftDownCMD(liftsub subsystem) {
+    m_liftsub = subsystem;
+    addRequirements(m_liftsub);
     // Use addRequirements() here to declare subsystem dependencies.
-    m_intakeSub = subsystem;
-    addRequirements(m_intakeSub);
   }
-
+ 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void initialize(){
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakeSub.startTail();
+    m_liftsub.startsliftDOWN();
+    m_liftsub.logPot();
+    if (m_liftsub.logPot() > Constants.upperlimit){
+      m_liftsub.startsliftUP();
+    }
+    if (m_liftsub.logPot() < Constants.lowerlimit){
+      m_liftsub.startsliftDOWN();
+    }
+    SmartDashboard.putNumber("Potentiometer5", 5);
+    
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intakeSub.stopTail();
+    m_liftsub.stopslift();
   }
 
   // Returns true when the command should end.
