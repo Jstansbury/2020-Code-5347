@@ -32,7 +32,7 @@ public class belt extends SubsystemBase {
     return bottomLim.get();
   }
   public void startbelt(){
-    belt.set(ControlMode.PercentOutput, 0.7);
+    belt.set(ControlMode.PercentOutput, 1);
   }
   public void stopbelt(){
     belt.set(ControlMode.PercentOutput, -0);

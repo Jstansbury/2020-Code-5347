@@ -43,7 +43,7 @@ public final class Constants {
 
     public static int TestMototPort = 2; 
 
-    public static double kPa = .026;
+    public static double kPa = .024;
     public static double kIa = 0;
     public static double kDa = 0;
 

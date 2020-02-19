@@ -24,6 +24,7 @@ import frc.robot.commands.TogglePneu;
 import frc.robot.commands.sliftDownCMD;
 import frc.robot.commands.sliftUpCMD;
 import frc.robot.commands.Matthewisbestfromjayson;
+import frc.robot.commands.PID2Vision;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.beltCMD;
@@ -101,6 +102,8 @@ public class RobotContainer {
 
     new JoystickButton(m_JoystickLeft, 7).whenPressed(new TogglePneu(m_beverLift));
     new JoystickButton(m_LogibleghGenericHID, 4).whenPressed(new TogglePneu(m_beverLift));
+
+    new JoystickButton(m_LogibleghGenericHID, 10).whenPressed(new PID2Vision(m_driveSub));
 
   }
 

@@ -10,6 +10,9 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -29,6 +32,10 @@ public class DriveSub extends SubsystemBase {
    private final PIDController pidAngle = new PIDController(Constants.kPa, Constants.kIa, Constants.kDa);
    private final AHRS ahrs = new AHRS(SPI.Port.kMXP);
 
+   NetworkTableInstance Visiontable = NetworkTableInstance.getDefault();
+   NetworkTable table = Visiontable.getTable("chameleon-vision").getSubTable("Microsoft LifeCam HD-3000");
+   public NetworkTableEntry  yaw = table.getEntry("yaw");
+
 
   private final SpeedController leftDrive =
   new SpeedControllerGroup(new WPI_TalonSRX(Constants.leftdriveport1), new WPI_TalonSRX(Constants.leftdriveport2));
@@ -45,6 +52,7 @@ public class DriveSub extends SubsystemBase {
   public DriveSub() {
     pidAngle.setTolerance(1);
     pidAngle.enableContinuousInput(-180, 180);
+
     
 
   }
@@ -71,7 +79,13 @@ public class DriveSub extends SubsystemBase {
   }
 
   public void PIDloop(double angle) {
-    tankieDrivie.arcadeDrive(0, MathUtil.clamp(pidAngle.calculate(ahrs.getAngle(), angle), -1, 1));
+    //ahrs.reset();
+    tankieDrivie.arcadeDrive(0, MathUtil.clamp(pidAngle.calculate(ahrs.getAngle(), -angle), -1, 1));
+  }
+
+  public void PIDloop2Vision() {
+    //ahrs.reset();
+    tankieDrivie.arcadeDrive(0, MathUtil.clamp(pidAngle.calculate(ahrs.getAngle(), -yaw.getDouble(0.0)), -1, 1));
   }
 
 
