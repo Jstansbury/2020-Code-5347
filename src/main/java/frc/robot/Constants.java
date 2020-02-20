@@ -37,7 +37,7 @@ public final class Constants {
     
     public static int potentiometerport = 0;
     public static double lowerlimit = 158;
-    public static double upperlimit = 375;  
+    public static double upperlimit = 377;  
     
     public static int CompressorPort = 11;
 
@@ -62,7 +62,7 @@ public final class Constants {
     public static double kVelocityP = 0;
     public static double kVelocityI = 0;
     public static double kVelocityD = 0;
-    public static double kVelocityF = 5;
+    public static double kVelocityF = 5.5;
     public static int kTimeoutMs =0;
 
 

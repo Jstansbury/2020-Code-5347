@@ -23,7 +23,7 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  Compressor c = new Compressor(11);
+  //Compressor c = new Compressor(11);
 
 
 
@@ -101,7 +101,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    c.start();
+    //c.start();
 
   }
 

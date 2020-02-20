@@ -33,6 +33,7 @@ import frc.robot.commands.TogglePneu;
 import frc.robot.commands.sliftDownCMD;
 import frc.robot.commands.sliftUpCMD;
 import frc.robot.commands.Matthewisbestfromjayson;
+import frc.robot.commands.RollerCMD;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.beltCMD;
@@ -92,7 +93,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(m_JoystickRight, 1).whileHeld(new ShootnRoll(m_Shooter, m_Roller, m_Belt));
-    new JoystickButton(m_LogibleghGenericHID, 7).whileHeld(new ShooterCmd(m_Shooter, 500));
+    new JoystickButton(m_LogibleghGenericHID, 7).whileHeld(new ShooterCmd(m_Shooter, 156));
     
     new JoystickButton(m_JoystickLeft, 1).whileHeld(new IntakeCMD(m_intake));
     new JoystickButton(m_LogibleghGenericHID, 8).whileHeld(new IntakeCMD(m_intake));
@@ -111,6 +112,8 @@ public class RobotContainer {
 
     new JoystickButton(m_JoystickLeft, 7).whenPressed(new TogglePneu(m_beverLift));
     new JoystickButton(m_LogibleghGenericHID, 4).whenPressed(new TogglePneu(m_beverLift));
+
+    new JoystickButton(m_LogibleghGenericHID, 6).whileHeld(new RollerCMD(m_Roller));
 
   }
 
