@@ -36,8 +36,8 @@ public final class Constants {
     public static int actuatorport = 0;
     
     public static int potentiometerport = 0;
-    public static double lowerlimit = 158;
-    public static double upperlimit = 375;  
+    public static double lowerlimit = 110;
+    public static double upperlimit = 377;  
     
     public static int CompressorPort = 11;
 
