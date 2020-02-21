@@ -37,7 +37,7 @@ public final class Constants {
     
     public static int potentiometerport = 0;
     public static double lowerlimit = 110;
-    public static double upperlimit = 377;  
+    public static double upperlimit = 370;  
     
     public static int CompressorPort = 11;
 
