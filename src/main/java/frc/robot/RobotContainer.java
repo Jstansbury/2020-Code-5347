@@ -33,6 +33,7 @@ import frc.robot.subsystems.BeaverLift;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.NetworkTableFun;
 import frc.robot.subsystems.RollerSub;
 import frc.robot.subsystems.liftsub;
 import frc.robot.subsystems.Shooter;
@@ -63,6 +64,7 @@ public class RobotContainer {
   private final liftsub m_liftsub = new liftsub();
   private final belt m_Belt = new belt();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final NetworkTableFun m_networktablefun = new NetworkTableFun();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.

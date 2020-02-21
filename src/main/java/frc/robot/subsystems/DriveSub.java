@@ -32,9 +32,7 @@ public class DriveSub extends SubsystemBase {
    private final PIDController pidAngle = new PIDController(Constants.kPa, Constants.kIa, Constants.kDa);
    private final AHRS ahrs = new AHRS(SPI.Port.kMXP);
 
-   NetworkTableInstance Visiontable = NetworkTableInstance.getDefault();
-   NetworkTable table = Visiontable.getTable("chameleon-vision").getSubTable("Microsoft LifeCam HD-3000");
-   public NetworkTableEntry  yaw = table.getEntry("yaw");
+
 
 
   private final SpeedController leftDrive =
@@ -85,7 +83,7 @@ public class DriveSub extends SubsystemBase {
 
   public void PIDloop2Vision() {
     //ahrs.reset();
-    tankieDrivie.arcadeDrive(0, MathUtil.clamp(pidAngle.calculate(ahrs.getAngle(), -yaw.getDouble(0.0)), -1, 1));
+    //tankieDrivie.arcadeDrive(0, MathUtil.clamp(pidAngle.calculate(ahrs.getAngle(), -yaw.getDouble(0.0)), -1, 1));
   }
 
 
