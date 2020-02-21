@@ -59,5 +59,8 @@ public final class Constants {
 
     public static int Uts1 = 6;
     public static int Uts2 = 7;
+	public static double kactuatorP = 0;
+	public static double kactuatorI = 0;
+	public static double kactuatorD = 0;
 
 }

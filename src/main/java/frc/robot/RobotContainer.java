@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.AqPID;
 import frc.robot.commands.BeltF;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCMD;
@@ -101,6 +102,8 @@ public class RobotContainer {
 
     new JoystickButton(m_JoystickLeft, 7).whenPressed(new TogglePneu(m_beverLift));
     new JoystickButton(m_LogibleghGenericHID, 4).whenPressed(new TogglePneu(m_beverLift));
+
+    new JoystickButton(m_JoystickLeft, 10).whenPressed(new AqPID(m_liftsub.targetangleandcurrentAngle(25.00), m_liftsub));
 
   }
 
