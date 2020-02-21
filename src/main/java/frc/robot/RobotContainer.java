@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -22,11 +22,13 @@ import frc.robot.commands.IntakeCMD;
 //import frc.robot.commands.Matthewisbestfromjayson;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.ShootnRoll;
+import frc.robot.commands.ShowValues;
 import frc.robot.commands.TankDrive;
 import frc.robot.subsystems.ColorWheel;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.NetworkTableFun;
 //import frc.robot.subsystems.IntakeSub;
 import frc.robot.commands.TogglePneu;
 //import frc.robot.commands.beltCMD;
@@ -72,6 +74,7 @@ public class RobotContainer {
   private final BeaverLift m_beverLift = new BeaverLift();
   private final liftsub m_liftsub = new liftsub();
   private final belt m_Belt = new belt();
+  private final NetworkTableFun m_NetworkTableFun = new NetworkTableFun();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   /**
@@ -81,6 +84,7 @@ public class RobotContainer {
     // Configure the button bindings
     m_driveSub.setDefaultCommand(new TankDrive(() -> m_LogibleghGenericHID.getRawAxis(1), () -> m_LogibleghGenericHID.getRawAxis(2), m_driveSub));
     //m_Belt.setDefaultCommand(new beltCMD(m_Belt));
+    m_NetworkTableFun.setDefaultCommand(new ShowValues(m_NetworkTableFun));
 
     configureButtonBindings();
   }
@@ -93,7 +97,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(m_JoystickRight, 1).whileHeld(new ShootnRoll(m_Shooter, m_Roller, m_Belt));
-    new JoystickButton(m_LogibleghGenericHID, 7).whileHeld(new ShooterCmd(m_Shooter, 156));
+    new JoystickButton(m_LogibleghGenericHID, 7).whileHeld(new ShooterCmd(m_Shooter, 154));
     
     new JoystickButton(m_JoystickLeft, 1).whileHeld(new IntakeCMD(m_intake));
     new JoystickButton(m_LogibleghGenericHID, 8).whileHeld(new IntakeCMD(m_intake));
