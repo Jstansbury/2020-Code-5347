@@ -10,6 +10,9 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -81,6 +84,13 @@ public class DriveSub extends SubsystemBase {
   public double setsetpoint(double distance){
     return distance + getaveragedistace();
   }
+  public void PIDloopAIM() {
+    NetworkTableInstance Visiontable = NetworkTableInstance.getDefault();
+    NetworkTable table = Visiontable.getTable("chameleon-vision").getSubTable("Microsoft LifeCam HD-3000");
+    NetworkTableEntry m_yaw = table.getEntry("targetYaw");
+    tankieDrivie.arcadeDrive(0, MathUtil.clamp(pidAngle.calculate(ahrs.getAngle(), m_yaw.getDouble(0.0)), -1, 1));
+  }
+
 
   public double getaveragedistace(){
     SmartDashboard.putNumber("avgdist", (leftEncoder.getDistance() + rightEncoder.getDistance())/2);
