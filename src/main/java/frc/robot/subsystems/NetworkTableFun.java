@@ -44,6 +44,8 @@ public class NetworkTableFun extends SubsystemBase {
 
   @Override
   public void periodic() {
+    //System.out.println(yaw.getDouble(0.0));
+
     // This method will be called once per scheduler run
   }
 }

@@ -34,6 +34,8 @@ public class DriveSub extends SubsystemBase {
    private final AHRS ahrs = new AHRS(SPI.Port.kMXP);
 
 
+
+
   private final SpeedController leftDrive =
   new SpeedControllerGroup(new WPI_TalonSRX(Constants.leftdriveport1), new WPI_TalonSRX(Constants.leftdriveport2));
 
@@ -52,6 +54,7 @@ public class DriveSub extends SubsystemBase {
     rightEncoder.setDistancePerPulse((Math.PI*6/20)/10.75);
     pidAngle.setTolerance(1);
     pidAngle.enableContinuousInput(-180, 180);
+
     
 
   }
@@ -78,7 +81,13 @@ public class DriveSub extends SubsystemBase {
   }
 
   public void PIDloop(double angle) {
-    tankieDrivie.arcadeDrive(0, MathUtil.clamp(pidAngle.calculate(ahrs.getAngle(), angle), -1, 1));
+    //ahrs.reset();
+    tankieDrivie.arcadeDrive(0, MathUtil.clamp(pidAngle.calculate(ahrs.getAngle(), -angle), -1, 1));
+  }
+
+  public void PIDloop2Vision() {
+    //ahrs.reset();
+    //tankieDrivie.arcadeDrive(0, MathUtil.clamp(pidAngle.calculate(ahrs.getAngle(), -yaw.getDouble(0.0)), -1, 1));
   }
 
   public double setsetpoint(double distance){

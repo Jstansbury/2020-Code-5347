@@ -36,6 +36,7 @@ import frc.robot.commands.sliftDownCMD;
 import frc.robot.commands.sliftUpCMD;
 import frc.robot.commands.Matthewisbestfromjayson;
 import frc.robot.commands.RollerCMD;
+import frc.robot.commands.PID2Vision;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.beltCMD;
@@ -44,6 +45,7 @@ import frc.robot.subsystems.BeaverLift;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.NetworkTableFun;
 import frc.robot.subsystems.RollerSub;
 import frc.robot.subsystems.liftsub;
 import frc.robot.subsystems.Shooter;
@@ -76,6 +78,7 @@ public class RobotContainer {
   private final belt m_Belt = new belt();
   private final NetworkTableFun m_NetworkTableFun = new NetworkTableFun();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final NetworkTableFun m_networktablefun = new NetworkTableFun();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -118,6 +121,7 @@ public class RobotContainer {
     new JoystickButton(m_LogibleghGenericHID, 4).whenPressed(new TogglePneu(m_beverLift));
 
     new JoystickButton(m_LogibleghGenericHID, 6).whileHeld(new RollerCMD(m_Roller));
+    new JoystickButton(m_LogibleghGenericHID, 10).whenPressed(new PID2Vision(m_driveSub));
 
   }
 

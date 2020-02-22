@@ -36,14 +36,14 @@ public final class Constants {
     public static int actuatorport = 0;
     
     public static int potentiometerport = 0;
-    public static double lowerlimit = 158;
-    public static double upperlimit = 377;  
+    public static double lowerlimit = 110;
+    public static double upperlimit = 370;  
     
     public static int CompressorPort = 11;
 
     public static int TestMototPort = 2; 
 
-    public static double kPa = .026;
+    public static double kPa = .024;
     public static double kIa = 0;
     public static double kDa = 0;
 
