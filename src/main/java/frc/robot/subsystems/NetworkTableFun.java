@@ -36,7 +36,10 @@ public class NetworkTableFun extends SubsystemBase {
     NetworkTableInstance Visiontable = NetworkTableInstance.getDefault();
     NetworkTable table = Visiontable.getTable("chameleon-vision").getSubTable("Microsoft LifeCam HD-3000");
     NetworkTableEntry m_yaw = table.getEntry("targetYaw");
-    SmartDashboard.putNumber("YAW", m_yaw.getDouble(0.0));
+    SmartDashboard.putNumber("YAW", m_yaw.getDouble(0.0));    
+    NetworkTableEntry m_pitch = table.getEntry("targetPitch");
+    SmartDashboard.putNumber("YAW", m_pitch.getDouble(0.0));
+
   }
 
   @Override
