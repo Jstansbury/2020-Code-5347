@@ -58,4 +58,6 @@ public final class Constants {
     public static int Uts1 = 6;
     public static int Uts2 = 7;
 
+    public static int ultrasonicport = 3;
+
 }
