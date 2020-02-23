@@ -43,8 +43,6 @@ public class sliftDownCMD extends CommandBase {
     if (m_liftsub.logPot() < Constants.lowerlimit){
       m_liftsub.startsliftDOWN();
     }
-    SmartDashboard.putNumber("Potentiometer5", 5);
-    
   }
 
   // Called once the command ends or is interrupted.
