@@ -31,7 +31,7 @@ public class AqPID extends PIDCommand {
         m_liftsub.potVoltage(angle),
         // This uses the output
         output -> {
-          m_liftsub.startslift(output);
+        m_liftsub.startslift(output);
           // Use the output here
         });
     // Use addRequirements() here to declare subsystem dependencies.
