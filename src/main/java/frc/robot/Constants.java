@@ -60,4 +60,6 @@ public final class Constants {
 
     public static int ultrasonicport = 3;
 
+    public static int BarturnerPort = 12;
+    public static int SpoolPort = 0;
 }
