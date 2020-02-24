@@ -7,47 +7,41 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.BeaverLift;
 
-public class IntakeCMD extends CommandBase {
+
+public class TogglePneu extends CommandBase {
   /**
-   * Creates a new IntakeCMD.
-   */  
+   * Creates a new TogglePneu.
+   */
+  private final BeaverLift m_PneumticSUB;
 
-  private final IntakeSub m_intakeSub;
-
-
-
-  public IntakeCMD(IntakeSub subsystem) {
+  public TogglePneu(BeaverLift subsystem) {
+    m_PneumticSUB = subsystem;
+    addRequirements(m_PneumticSUB);
     // Use addRequirements() here to declare subsystem dependencies.
-    m_intakeSub = subsystem;
-    addRequirements(m_intakeSub);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    m_PneumticSUB.toggle();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakeSub.startTail();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intakeSub.stopTail();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

@@ -7,47 +7,44 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.DriveSub;
 
-public class IntakeCMD extends CommandBase {
+public class PID2Vision extends CommandBase {
   /**
-   * Creates a new IntakeCMD.
-   */  
+   * Creates a new happyvalentinesLOSER.
+   */
 
-  private final IntakeSub m_intakeSub;
+  private final DriveSub m_drivesub;
 
-
-
-  public IntakeCMD(IntakeSub subsystem) {
+  public PID2Vision(DriveSub subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_intakeSub = subsystem;
-    addRequirements(m_intakeSub);
+    m_drivesub = subsystem;
+    addRequirements(m_drivesub);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    m_drivesub.resetGyro();
+    //m_drivesub.PIDloop(m_angle);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakeSub.startTail();
+    m_drivesub.PIDloop2Vision();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intakeSub.stopTail();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return m_drivesub.getOnTarget();
   }
 }

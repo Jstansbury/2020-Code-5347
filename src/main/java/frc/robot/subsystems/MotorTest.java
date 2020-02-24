@@ -7,39 +7,33 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.*;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Shooter extends SubsystemBase {
-  private final TalonSRX Leftshoot = new TalonSRX(Constants.LeftShootPort);
-  private final TalonSRX Rightshoot = new TalonSRX(Constants.RightShootPort);
-  
-
+public class MotorTest extends SubsystemBase {
   /**
-   * Creates a new Shooter.
+   * Creates a new MotorTest.
    */
-
-  public void shootinit() {
-    //Rightshoot.follow(Leftshoot);
-  } 
-  public void spinup() {
-    Leftshoot.set(ControlMode.PercentOutput, .98);
-    Rightshoot.set(ControlMode.PercentOutput, .98);
+  private final TalonSRX TestMotor = new TalonSRX(Constants.TestMototPort);
+  public MotorTest() {
 
   }
 
-  public void stop() {
-    Leftshoot.set(ControlMode.PercentOutput, 0);
-    Rightshoot.set(ControlMode.PercentOutput, 0);
+  public void StartMotorF(){
+    TestMotor.set(ControlMode.PercentOutput, 0.7);
 
   }
-
-  public Shooter() {
+  public void StartMotorB(){
+    TestMotor.set(ControlMode.PercentOutput, -0.7);
 
   }
+  public void StopMotor(){
+    TestMotor.set(ControlMode.PercentOutput, 0);
+  }
+
 
   @Override
   public void periodic() {

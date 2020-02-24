@@ -19,6 +19,7 @@ import frc.robot.Constants;
 
 public class liftsub extends SubsystemBase {
   AnalogPotentiometer pot = new AnalogPotentiometer(Constants.potentiometerport, 360, 30);
+
     // creates
     private final TalonSRX actuator = new TalonSRX(Constants.actuatorport);
   public liftsub() {
@@ -40,7 +41,12 @@ public class liftsub extends SubsystemBase {
   public void startslift(double speed) {
       actuator.set(ControlMode.PercentOutput, speed);
   }
-
+  public void startsliftUP() {
+      actuator.set(ControlMode.PercentOutput, 0.7);
+  }
+  public void startsliftDOWN() {
+    actuator.set(ControlMode.PercentOutput, -0.7);
+}
   public void stopslift() {
       actuator.set(ControlMode.PercentOutput, 0);
   }
@@ -48,11 +54,6 @@ public class liftsub extends SubsystemBase {
     SmartDashboard.putNumber("Potentiometer", pot.get());
     return pot.get();
   }
-
-  public double angle(double angle) {
-    return angle;
-  }
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

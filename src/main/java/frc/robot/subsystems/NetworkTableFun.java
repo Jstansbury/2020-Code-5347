@@ -7,42 +7,36 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.*;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 
-public class Shooter extends SubsystemBase {
-  private final TalonSRX Leftshoot = new TalonSRX(Constants.LeftShootPort);
-  private final TalonSRX Rightshoot = new TalonSRX(Constants.RightShootPort);
-  
-
+public class NetworkTableFun extends SubsystemBase {
   /**
-   * Creates a new Shooter.
+   * Creates a new NetworkTableFun.
    */
+  public NetworkTable table;
+  public NetworkTableEntry yaw;
+  public NetworkTableInstance Visiontable;
 
-  public void shootinit() {
-    //Rightshoot.follow(Leftshoot);
-  } 
-  public void spinup() {
-    Leftshoot.set(ControlMode.PercentOutput, .98);
-    Rightshoot.set(ControlMode.PercentOutput, .98);
+   
 
-  }
-
-  public void stop() {
-    Leftshoot.set(ControlMode.PercentOutput, 0);
-    Rightshoot.set(ControlMode.PercentOutput, 0);
+  public NetworkTableFun() {
 
   }
 
-  public Shooter() {
+  public void Tableinit(){
+    NetworkTableInstance Visiontable = NetworkTableInstance.getDefault();
+    NetworkTable table = Visiontable.getTable("chameleon-vision").getSubTable("Microsoft LifeCam HD-3000");
+    NetworkTableEntry yaw = table.getEntry("yaw");
 
   }
 
   @Override
   public void periodic() {
+    //System.out.println(yaw.getDouble(0.0));
+
     // This method will be called once per scheduler run
   }
 }
