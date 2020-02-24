@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.belt;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
@@ -17,7 +18,6 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
  * An example command that uses an example subsystem.
  */
 public class beltCMD extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final belt m_subsystem;
 
   /**
@@ -39,17 +39,25 @@ public class beltCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      if (m_subsystem.bottomisPressed()) {
-          m_subsystem.startbelt();
+      SmartDashboard.putNumber("Ultrasonic Distance [cm]", m_subsystem.logUSSR()/9.77);
+      
+      if ((m_subsystem.logUSSR()) <= 55) {
+        m_subsystem.startbelt();
       } else {
-          m_subsystem.stopbelt();
+        m_subsystem.stopbelt();
       }
+
+      // if (m_subsystem.bottomisPressed()) {
+      //     m_subsystem.startbelt();
+      // } else {
+      //     m_subsystem.stopbelt();
+      // }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_subsystem.stopbelt();
+    //m_subsystem.stopbelt();
   }
 
   // Returns true when the command should end.

@@ -10,9 +10,11 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -21,6 +23,8 @@ public class belt extends SubsystemBase {
   private final DigitalInput bottomLim = new DigitalInput(Constants.BLimport);
   private final TalonSRX belt = new TalonSRX(Constants.beltsport);
   private final Ultrasonic UTS = new Ultrasonic(Constants.Uts1, Constants.Uts2);
+  AnalogPotentiometer ussr = new AnalogPotentiometer(Constants.ultrasonicport, 360, 30);
+
   public belt() {
   }
   public boolean bottomisPressed() {
@@ -36,6 +40,10 @@ public class belt extends SubsystemBase {
   }
   public void stopbelt(){
     belt.set(ControlMode.PercentOutput, -0);
+  }
+  public double logUSSR() {
+    SmartDashboard.putNumber("Ultrasonic Sensor", ussr.get());
+    return ussr.get();
   }
 
   @Override
