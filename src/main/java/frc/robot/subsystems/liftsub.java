@@ -31,8 +31,19 @@ public class liftsub extends SubsystemBase {
   // MyCamName will vary depending on the name of your camera
   NetworkTable cameraTable = table.getTable("chameleon-vision").getSubTable("MyCamName");
   // Gets the yaw to the target from the cameraTable
-  public NetworkTableEntry yaw = cameraTable.getEntry("yaw");
+  public NetworkTableEntry yaw = cameraTable.getEntry("targetPitch");
 
+  public double pitch() {
+    NetworkTableInstance table = NetworkTableInstance.getDefault();
+
+    // Gets the MyCamName table under the chamelon-vision table
+    // MyCamName will vary depending on the name of your camera
+    NetworkTable cameraTable = table.getTable("chameleon-vision").getSubTable("MyCamName");
+    // Gets the yaw to the target from the cameraTable
+    NetworkTableEntry pitch = cameraTable.getEntry("targetPitch");
+    return 12.5;
+
+  }
   public liftsub() {
     // y=-23.6*(x)+822.2 voltage 
   } // c == 25" b == 20" 

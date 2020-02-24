@@ -17,6 +17,7 @@ import frc.robot.subsystems.liftsub;
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
 public class AqPID extends PIDCommand {
+  liftsub m_liftsub;
   /**
    * Creates a new DriveDistancePID.
    */
@@ -44,6 +45,17 @@ public class AqPID extends PIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return getController().atSetpoint();
+	if (m_liftsub.logPot() > Constants.upperlimit) {
+    return true;
+    } 
+  else if (m_liftsub.logPot() >= Constants.lowerlimit) {
+    return true;
   }
+  else if (getController().atSetpoint()) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
 }
