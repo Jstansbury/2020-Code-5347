@@ -30,7 +30,9 @@ public class ClimberBar extends SubsystemBase {
   public void STOP(){
     Barturner.set(ControlMode.PercentOutput, 0);
   }
-
+  public void spoolback(){
+    Barturner.set(ControlMode.PercentOutput, -.45);
+  }
 
   @Override
   public void periodic() {

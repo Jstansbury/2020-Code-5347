@@ -28,10 +28,10 @@ public final class Constants {
     public static int rightdriveport2 = 2;
 
     public static int tailport = 4;
-    public static int beltsport = 9;
+    public static int beltsport = 3;
     public static int rollerport = 6;
 
-    public static int LeftShootPort = 3;
+    public static int LeftShootPort = 9;
     public static int RightShootPort = 5;
     public static int actuatorport = 0;
     
