@@ -106,6 +106,8 @@ public class RobotContainer {
     new JoystickButton(m_JoystickLeft, 7).whenPressed(new TogglePneu(m_beverLift));
     new JoystickButton(m_LogibleghGenericHID, 4).whenPressed(new TogglePneu(m_beverLift));
 
+    new JoystickButton(m_JoystickLeft, 11).whenPressed(new AqPID(45.00, m_liftsub));
+
     new JoystickButton(m_JoystickLeft, 10).whenPressed(new AqPID(m_liftsub.targetangleandcurrentAngle(m_liftsub.pitch()), m_liftsub));
     new JoystickButton(m_LogibleghGenericHID, 10).whenPressed(new PID2Vision(m_driveSub));
   }
