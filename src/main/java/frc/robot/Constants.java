@@ -62,7 +62,7 @@ public final class Constants {
 
     public static int ultrasonicport = 3;
 
-    public static double kactuatorP = 0;
+    public static double kactuatorP = 0.08;
 	public static double kactuatorI = 0;
 	public static double kactuatorD = 0;
 }
