@@ -15,6 +15,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import frc.robot.commands.DriveDistance;
 import frc.robot.commands.BeltF;
+import frc.robot.commands.ClimbBarCMD;
+import frc.robot.commands.ClimbCombo;
+import frc.robot.commands.ElevatorDownCMD;
+import frc.robot.commands.ElevatorUpCMD;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.GoToColor;
 import frc.robot.commands.IntakeCMD;
@@ -31,6 +35,7 @@ import frc.robot.subsystems.IntakeSub;
 import frc.robot.subsystems.NetworkTableFun;
 //import frc.robot.subsystems.IntakeSub;
 import frc.robot.commands.TogglePneu;
+import frc.robot.commands.barout;
 //import frc.robot.commands.beltCMD;
 import frc.robot.commands.sliftDownCMD;
 import frc.robot.commands.sliftUpCMD;
@@ -42,6 +47,8 @@ import frc.robot.commands.TankDrive;
 import frc.robot.commands.beltCMD;
 import frc.robot.commands.happyvalentinesLOSER;
 import frc.robot.subsystems.BeaverLift;
+import frc.robot.subsystems.ClimbEle;
+import frc.robot.subsystems.ClimberBar;
 import frc.robot.subsystems.DriveSub;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSub;
@@ -77,6 +84,8 @@ public class RobotContainer {
   private final liftsub m_liftsub = new liftsub();
   private final belt m_Belt = new belt();
   private final NetworkTableFun m_NetworkTableFun = new NetworkTableFun();
+  private final ClimberBar m_ClimberBar = new ClimberBar();
+  private final ClimbEle m_ClimbEle = new ClimbEle();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final NetworkTableFun m_networktablefun = new NetworkTableFun();
 
@@ -123,6 +132,14 @@ public class RobotContainer {
     new JoystickButton(m_LogibleghGenericHID, 6).whileHeld(new RollerCMD(m_Roller));
     new JoystickButton(m_LogibleghGenericHID, 10).whenPressed(new PID2Vision(m_driveSub));
 
+    new JoystickButton(m_LogibleghGenericHID, 2).whileHeld(new ElevatorUpCMD(m_ClimbEle));
+
+    new JoystickButton(m_LogibleghGenericHID, 11).whileHeld(new ClimbCombo(m_ClimbEle, m_ClimberBar));
+
+    new JoystickButton(m_JoystickLeft, 11).whileHeld(new ClimbBarCMD(m_ClimberBar));
+    new JoystickButton(m_LogibleghGenericHID, 3).whileHeld(new barout(m_ClimberBar));
+
+    new JoystickButton(m_JoystickLeft, 9).whileHeld(new ElevatorDownCMD(m_ClimbEle));
   }
 
 
