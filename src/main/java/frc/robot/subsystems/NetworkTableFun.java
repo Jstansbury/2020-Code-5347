@@ -38,7 +38,7 @@ public class NetworkTableFun extends SubsystemBase {
     NetworkTableEntry m_yaw = table.getEntry("targetYaw");
     SmartDashboard.putNumber("YAW", m_yaw.getDouble(0.0));    
     NetworkTableEntry m_pitch = table.getEntry("targetPitch");
-    SmartDashboard.putNumber("YAW", m_pitch.getDouble(0.0));
+    SmartDashboard.putNumber("PITCH", m_pitch.getDouble(0.0));
 
   }
 
