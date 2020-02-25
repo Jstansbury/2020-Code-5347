@@ -67,4 +67,22 @@ public final class Constants {
 	public static double kactuatorD = 0;
     public static int BarturnerPort = 12;
     public static int SpoolPort = 0;
+    public static int kVelocityIdx = 0;
+    public static double kVelocityP = 0;
+    public static double kVelocityI = 0;
+    public static double kVelocityD = 0;
+    public static double kVelocityF = 5.5;
+    public static int kTimeoutMs =0;
+
+
+    public static int colorport = 1;
+
+    public static double krotationP = 0;
+    public static double krotationI = 0;
+    public static double krotationD = 0;
+
+    public static double kdistanceP = 0;
+    public static double kdistanceI = 0;
+    public static double kdistanceD = 0;
+
 }

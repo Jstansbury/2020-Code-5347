@@ -21,7 +21,7 @@ public class ShootnRoll extends ParallelCommandGroup {
    */
   public ShootnRoll(Shooter m_shooter, RollerSub m_Roller, belt m_Belt) {
     addCommands(
-      new ShooterCmd(m_shooter),
+      new ShooterCmd(m_shooter, 3000),
       new RollerCMD(m_Roller));
       new BeltF(m_Belt);
     // Add your commands in the super() call, e.g.

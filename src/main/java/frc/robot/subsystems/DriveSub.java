@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpiutil.math.MathUtil;
 import frc.robot.Constants;
@@ -43,11 +44,14 @@ public class DriveSub extends SubsystemBase {
 
   private final DifferentialDrive tankieDrivie = new DifferentialDrive(leftDrive, rightDrive);
 
+
   private final Encoder leftEncoder = new Encoder(Constants.encoderleftport1, Constants.encoderleftport2);
   private final Encoder rightEncoder = new Encoder(Constants.encoderrightport1, Constants.encoderrightport2);
   
 
   public DriveSub() {
+    leftEncoder.setDistancePerPulse((Math.PI*6/20)/10.75);
+    rightEncoder.setDistancePerPulse((Math.PI*6/20)/10.75);
     pidAngle.setTolerance(1);
     pidAngle.enableContinuousInput(-180, 180);
 
@@ -86,6 +90,21 @@ public class DriveSub extends SubsystemBase {
     //tankieDrivie.arcadeDrive(0, MathUtil.clamp(pidAngle.calculate(ahrs.getAngle(), -yaw.getDouble(0.0)), -1, 1));
   }
 
+  public double setsetpoint(double distance){
+    return distance + getaveragedistace();
+  }
+
+  public double getaveragedistace(){
+    SmartDashboard.putNumber("avgdist", (leftEncoder.getDistance() + rightEncoder.getDistance())/2);
+    return (leftEncoder.getDistance() + rightEncoder.getDistance())/2;
+  }
+
+  public void arcadeDrive(double forward, double rotation){
+    tankieDrivie.arcadeDrive(forward, rotation);
+  }
+  public double getangle(){
+    return ahrs.getAngle();
+  }
 
   @Override
   public void periodic() {
