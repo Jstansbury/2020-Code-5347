@@ -21,8 +21,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class liftsub extends SubsystemBase {
+  
   AnalogPotentiometer pot = new AnalogPotentiometer(Constants.potentiometerport, 360, 30);
-
     // creates
   private final TalonSRX actuator = new TalonSRX(Constants.actuatorport);
   NetworkTableInstance table = NetworkTableInstance.getDefault();
@@ -32,7 +32,9 @@ public class liftsub extends SubsystemBase {
   NetworkTable cameraTable = table.getTable("chameleon-vision").getSubTable("MyCamName");
   // Gets the yaw to the target from the cameraTable
   public NetworkTableEntry yaw = cameraTable.getEntry("targetPitch");
-
+  public void logcurrentangletosmartboard() {
+    SmartDashboard.putNumber("Current Angle", Math.acos((1024+400-Math.pow((-0.0479616*logPot()+34.175), 2))/(2*32*20)));
+  }
   public double pitch() {
     NetworkTableInstance table = NetworkTableInstance.getDefault();
 
@@ -48,11 +50,10 @@ public class liftsub extends SubsystemBase {
     // y=-23.6*(x)+822.2 voltage 
   } // c == 25" b == 20" 
   public double potVoltage(double angle) {
-    angle = (1000*Math.sin(angle)- 225)*-1;
-    return 23.6*angle+822.2;
+    return (2*32*20*Math.cos(angle)-400-1024-34.1751)/0.479616;
   }
   public double getcurrentangle() {
-    return Math.asin((logPot() - 6132.2) / -23600);
+    return Math.acos((1024+400-Math.pow((-0.0479616*logPot()+34.175), 2))/(2*32*20));
   }
 
   public double targetangleandcurrentAngle(final double pitch) {

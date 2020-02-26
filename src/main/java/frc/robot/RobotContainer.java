@@ -29,6 +29,7 @@ import frc.robot.commands.PID2Vision;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.TankDrive;
 import frc.robot.commands.beltCMD;
+import frc.robot.commands.defaultLiftsubCMD;
 import frc.robot.commands.happyvalentinesLOSER;
 import frc.robot.subsystems.BeaverLift;
 import frc.robot.subsystems.DriveSub;
@@ -71,6 +72,8 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+
+    m_liftsub.setDefaultCommand(new defaultLiftsubCMD(m_liftsub));
     // Configure the button bindings
     m_driveSub.setDefaultCommand(new TankDrive(() -> m_LogibleghGenericHID.getRawAxis(1), () -> m_LogibleghGenericHID.getRawAxis(2), m_driveSub));
     //m_Belt.setDefaultCommand(new beltCMD(m_Belt));
@@ -106,7 +109,7 @@ public class RobotContainer {
     new JoystickButton(m_JoystickLeft, 7).whenPressed(new TogglePneu(m_beverLift));
     new JoystickButton(m_LogibleghGenericHID, 4).whenPressed(new TogglePneu(m_beverLift));
 
-    new JoystickButton(m_JoystickLeft, 11).whenPressed(new AqPID(45.00, m_liftsub));
+    new JoystickButton(m_LogibleghGenericHID, 12).whenPressed(new AqPID(45.00, m_liftsub));
 
     new JoystickButton(m_JoystickLeft, 10).whenPressed(new AqPID(m_liftsub.targetangleandcurrentAngle(m_liftsub.pitch()), m_liftsub));
     new JoystickButton(m_LogibleghGenericHID, 10).whenPressed(new PID2Vision(m_driveSub));
