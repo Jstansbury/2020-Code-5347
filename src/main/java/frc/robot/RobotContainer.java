@@ -94,7 +94,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure the button bindings
-    m_driveSub.setDefaultCommand(new TankDrive(() -> m_LogibleghGenericHID.getRawAxis(1), () -> m_LogibleghGenericHID.getRawAxis(2), m_driveSub));
+    m_driveSub.setDefaultCommand(new TankDrive(() -> m_LogibleghGenericHID.getRawAxis(1), () -> m_LogibleghGenericHID.getRawAxis(0), m_driveSub));
     //m_Belt.setDefaultCommand(new beltCMD(m_Belt));
     m_NetworkTableFun.setDefaultCommand(new ShowValues(m_NetworkTableFun));
 
@@ -130,7 +130,8 @@ public class RobotContainer {
     new JoystickButton(m_LogibleghGenericHID, 4).whenPressed(new TogglePneu(m_beverLift));
 
     new JoystickButton(m_LogibleghGenericHID, 6).whileHeld(new RollerCMD(m_Roller));
-    new JoystickButton(m_LogibleghGenericHID, 10).whenPressed(new PID2Vision(m_driveSub));
+
+    new JoystickButton(m_LogibleghGenericHID, 10).whenPressed(new happyvalentinesLOSER(m_driveSub, m_networktablefun.GivemeAYaw()));
 
     new JoystickButton(m_LogibleghGenericHID, 2).whileHeld(new ElevatorUpCMD(m_ClimbEle));
 
@@ -140,7 +141,10 @@ public class RobotContainer {
     new JoystickButton(m_LogibleghGenericHID, 3).whileHeld(new barout(m_ClimberBar));
 
     new JoystickButton(m_JoystickLeft, 9).whileHeld(new ElevatorDownCMD(m_ClimbEle));
+
+    
   }
+
 
 
   /**
