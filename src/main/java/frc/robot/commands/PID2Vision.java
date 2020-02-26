@@ -27,6 +27,8 @@ public class PID2Vision extends CommandBase {
   @Override
   public void initialize() {
     m_drivesub.resetGyro();
+    //m_drivesub.PIDloopAIM();
+
     //m_drivesub.PIDloop(m_angle);
 
   }
@@ -34,7 +36,6 @@ public class PID2Vision extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drivesub.PIDloop2Vision();
   }
 
   // Called once the command ends or is interrupted.

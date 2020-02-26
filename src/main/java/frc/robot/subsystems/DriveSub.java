@@ -93,11 +93,26 @@ public class DriveSub extends SubsystemBase {
   public double setsetpoint(double distance){
     return distance + getaveragedistace();
   }
-  public void PIDloopAIM() {
+
+  public double whatstheyaw(){
     NetworkTableInstance Visiontable = NetworkTableInstance.getDefault();
     NetworkTable table = Visiontable.getTable("chameleon-vision").getSubTable("Microsoft LifeCam HD-3000");
     NetworkTableEntry m_yaw = table.getEntry("targetYaw");
-    tankieDrivie.arcadeDrive(0, MathUtil.clamp(pidAngle.calculate(ahrs.getAngle(), m_yaw.getDouble(0.0)), -1, 1));
+    SmartDashboard.putNumber("turningto", m_yaw.getDouble(0.0));
+    SmartDashboard.putNumber("entryto", table.getEntry("targetYaw").getDouble(0.0));
+    return table.getEntry("targetYaw").getDouble(0.0);
+
+  }
+
+  public double GiveYaw() {
+    NetworkTableInstance Visiontable = NetworkTableInstance.getDefault();
+    NetworkTable table = Visiontable.getTable("chameleon-vision").getSubTable("Microsoft LifeCam HD-3000");
+    NetworkTableEntry m_yaw = table.getEntry("targetYaw");
+    return m_yaw.getDouble(0.0);
+  }
+
+  public double drivecurve(double input){
+    return 1.1884* Math.sin(input);
   }
 
 
