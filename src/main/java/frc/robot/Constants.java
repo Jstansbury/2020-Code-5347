@@ -30,10 +30,10 @@ public final class Constants {
     public static int rightdriveport2 = 2;
 
     public static int tailport = 4;
-    public static int beltsport = 9;
+    public static int beltsport = 3;
     public static int rollerport = 6;
 
-    public static int LeftShootPort = 3;
+    public static int LeftShootPort = 9;
     public static int RightShootPort = 5;
     public static int actuatorport = 0;
     
@@ -65,4 +65,6 @@ public final class Constants {
     public static double kactuatorP = 0.008;
 	public static double kactuatorI = 0;
 	public static double kactuatorD = 0;
+    public static int BarturnerPort = 12;
+    public static int SpoolPort = 0;
 }
