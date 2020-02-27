@@ -41,6 +41,8 @@ import frc.robot.commands.sliftDownCMD;
 import frc.robot.commands.sliftUpCMD;
 import frc.robot.commands.Matthewisbestfromjayson;
 import frc.robot.commands.RollerCMD;
+import frc.robot.commands.RotationCMD;
+import frc.robot.commands.RotationGrp;
 import frc.robot.commands.PID2Vision;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.TankDrive;
@@ -94,7 +96,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure the button bindings
-    m_driveSub.setDefaultCommand(new TankDrive(() -> m_LogibleghGenericHID.getRawAxis(1), () -> m_LogibleghGenericHID.getRawAxis(0), m_driveSub));
+    m_driveSub.setDefaultCommand(new TankDrive(() -> -m_LogibleghGenericHID.getRawAxis(1), () -> -m_LogibleghGenericHID.getRawAxis(0), m_driveSub));
     //m_Belt.setDefaultCommand(new beltCMD(m_Belt));
     m_NetworkTableFun.setDefaultCommand(new ShowValues(m_NetworkTableFun));
 
@@ -131,7 +133,7 @@ public class RobotContainer {
 
     new JoystickButton(m_LogibleghGenericHID, 6).whileHeld(new RollerCMD(m_Roller));
 
-    new JoystickButton(m_LogibleghGenericHID, 10).whenPressed(new happyvalentinesLOSER(m_driveSub, m_networktablefun.GivemeAYaw()));
+    new JoystickButton(m_LogibleghGenericHID, 10).whenPressed(new RotationGrp(m_networktablefun.GivemeAYaw(), m_driveSub));
 
     new JoystickButton(m_LogibleghGenericHID, 2).whileHeld(new ElevatorUpCMD(m_ClimbEle));
 

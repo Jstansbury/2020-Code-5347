@@ -43,9 +43,9 @@ public final class Constants {
 
     public static int TestMototPort = 2; 
 
-    public static double kPa = .289;
+    public static double kPa = 0.094;
     public static double kIa = 0;
-    public static double kDa = 0.015;
+    public static double kDa = 0;
 
     public static int encoderleftport1 = 0;
     public static int encoderleftport2 = 1;
