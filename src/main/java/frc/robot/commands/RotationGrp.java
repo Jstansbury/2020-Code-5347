@@ -7,24 +7,20 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.subsystems.RollerSub;
-import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.belt;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.subsystems.DriveSub;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class ShootnRoll extends ParallelCommandGroup {
+public class RotationGrp extends SequentialCommandGroup {
   /**
-   * Creates a new ShootnRoll.
+   * Creates a new RotationGrp.
    */
-  public ShootnRoll(Shooter m_shooter, RollerSub m_Roller, belt m_Belt) {
-    addCommands(
-      new ShooterCmd(m_shooter, 3000),
-      new RollerCMD(m_Roller));
-      new BeltF(m_Belt);
+
+  public RotationGrp(double target, DriveSub m_drivesub) {
     // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());super();
+    // super(new FooCommand(), new BarCommand());
+    super(new resetgyro(m_drivesub), new RotationCMD(target, m_drivesub));
   }
 }

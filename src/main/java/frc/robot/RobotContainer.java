@@ -7,29 +7,43 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.AqPID;
+import edu.wpi.first.wpilibj.controller.PIDController;
+import frc.robot.commands.DriveDistance;
 import frc.robot.commands.BeltF;
 import frc.robot.commands.ClimbBarCMD;
 import frc.robot.commands.ClimbCombo;
 import frc.robot.commands.ElevatorDownCMD;
 import frc.robot.commands.ElevatorUpCMD;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.GoToColor;
 import frc.robot.commands.IntakeCMD;
+//import frc.robot.commands.IntakeCMD;
 //import frc.robot.commands.Matthewisbestfromjayson;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.ShootnRoll;
+import frc.robot.commands.ShowValues;
 import frc.robot.commands.TankDrive;
+import frc.robot.subsystems.ColorWheel;
+import frc.robot.subsystems.DriveSub;
+import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakeSub;
+import frc.robot.subsystems.NetworkTableFun;
+//import frc.robot.subsystems.IntakeSub;
 import frc.robot.commands.TogglePneu;
 import frc.robot.commands.barout;
 //import frc.robot.commands.beltCMD;
 import frc.robot.commands.sliftDownCMD;
 import frc.robot.commands.sliftUpCMD;
 import frc.robot.commands.Matthewisbestfromjayson;
+import frc.robot.commands.RollerCMD;
+import frc.robot.commands.RotationCMD;
+import frc.robot.commands.RotationGrp;
 import frc.robot.commands.PID2Vision;
 import frc.robot.commands.ShooterCmd;
 import frc.robot.commands.TankDrive;
@@ -49,6 +63,7 @@ import frc.robot.subsystems.Shooter;
 //import frc.robot.subsystems.belt;
 import frc.robot.subsystems.belt;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.PIDCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 
@@ -72,6 +87,7 @@ public class RobotContainer {
   private final BeaverLift m_beverLift = new BeaverLift();
   private final liftsub m_liftsub = new liftsub();
   private final belt m_Belt = new belt();
+  private final NetworkTableFun m_NetworkTableFun = new NetworkTableFun();
   private final ClimberBar m_ClimberBar = new ClimberBar();
   private final ClimbEle m_ClimbEle = new ClimbEle();
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
@@ -84,8 +100,9 @@ public class RobotContainer {
 
     m_liftsub.setDefaultCommand(new defaultLiftsubCMD(m_liftsub));
     // Configure the button bindings
-    m_driveSub.setDefaultCommand(new TankDrive(() -> m_LogibleghGenericHID.getRawAxis(1), () -> m_LogibleghGenericHID.getRawAxis(2), m_driveSub));
+    m_driveSub.setDefaultCommand(new TankDrive(() -> -m_LogibleghGenericHID.getRawAxis(1), () -> -m_LogibleghGenericHID.getRawAxis(0), m_driveSub));
     //m_Belt.setDefaultCommand(new beltCMD(m_Belt));
+    m_NetworkTableFun.setDefaultCommand(new ShowValues(m_NetworkTableFun));
 
     configureButtonBindings();
   }
@@ -98,7 +115,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(m_JoystickRight, 1).whileHeld(new ShootnRoll(m_Shooter, m_Roller, m_Belt));
-    new JoystickButton(m_LogibleghGenericHID, 7).whileHeld(new ShootnRoll(m_Shooter, m_Roller, m_Belt));
+    new JoystickButton(m_LogibleghGenericHID, 7).whileHeld(new ShooterCmd(m_Shooter, 154));
     
     new JoystickButton(m_JoystickLeft, 1).whileHeld(new IntakeCMD(m_intake));
     new JoystickButton(m_LogibleghGenericHID, 8).whileHeld(new IntakeCMD(m_intake));
@@ -119,6 +136,9 @@ public class RobotContainer {
     new JoystickButton(m_LogibleghGenericHID, 4).whenPressed(new TogglePneu(m_beverLift));
 
     new JoystickButton(m_LogibleghGenericHID, 12).whenPressed(new AqPID(45.00, m_liftsub));
+    new JoystickButton(m_LogibleghGenericHID, 6).whileHeld(new RollerCMD(m_Roller));
+
+    new JoystickButton(m_LogibleghGenericHID, 10).whenPressed(new RotationGrp(m_networktablefun.GivemeAYaw(), m_driveSub));
 
     new JoystickButton(m_JoystickLeft, 10).whenPressed(new AqPID(m_liftsub.targetangleandcurrentAngle(m_liftsub.pitch()), m_liftsub));
     new JoystickButton(m_LogibleghGenericHID, 10).whenPressed(new PID2Vision(m_driveSub));
@@ -130,7 +150,10 @@ public class RobotContainer {
     new JoystickButton(m_LogibleghGenericHID, 3).whileHeld(new barout(m_ClimberBar));
 
     new JoystickButton(m_JoystickLeft, 9).whileHeld(new ElevatorDownCMD(m_ClimbEle));
+
+    
   }
+
 
 
   /**

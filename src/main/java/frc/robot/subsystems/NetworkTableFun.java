@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class NetworkTableFun extends SubsystemBase {
@@ -17,8 +18,9 @@ public class NetworkTableFun extends SubsystemBase {
    * Creates a new NetworkTableFun.
    */
   public NetworkTable table;
-  public NetworkTableEntry yaw;
+  public NetworkTableEntry m_yaw;
   public NetworkTableInstance Visiontable;
+  private double missing;
 
    
 
@@ -27,9 +29,21 @@ public class NetworkTableFun extends SubsystemBase {
   }
 
   public void Tableinit(){
+   
+
+
+  }
+  public double GivemeAYaw(){
     NetworkTableInstance Visiontable = NetworkTableInstance.getDefault();
     NetworkTable table = Visiontable.getTable("chameleon-vision").getSubTable("Microsoft LifeCam HD-3000");
-    NetworkTableEntry yaw = table.getEntry("yaw");
+    NetworkTableEntry m_yaw = table.getEntry("targetYaw");
+    SmartDashboard.putNumber("YAW", m_yaw.getDouble(0.0)); 
+    missing = m_yaw.getDouble(0.0);
+    SmartDashboard.putNumber("missing", missing); 
+
+    return missing;
+    //NetworkTableEntry m_pitch = table.getEntry("targetPitch");
+    //SmartDashboard.putNumber("PITCH", m_pitch.getDouble(0.0));
 
   }
 

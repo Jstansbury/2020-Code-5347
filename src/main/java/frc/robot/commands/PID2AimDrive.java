@@ -7,56 +7,44 @@
 
 package frc.robot.commands;
 
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSub;
 
-public class TankDrive extends CommandBase {
+public class PID2AimDrive extends CommandBase {
   /**
-   * Creates a new TankDrive.
+   * Creates a new happyvalentinesLOSER.
    */
 
-    private final DriveSub m_drivetrain;
-    private final DoubleSupplier m_left;
-    private final DoubleSupplier m_right;
-  
-    /**
-     * Creates a new TankDrive command.
-     *
-     * @param left       The control input for the left side of the drive
-     * @param right      The control input for the right sight of the drive
-     * @param drivetrain The drivetrain subsystem to drive
-     */
-    public TankDrive(DoubleSupplier left, DoubleSupplier right, DriveSub drivetrain) {
-      m_drivetrain = drivetrain;
-      m_left = left;
-      m_right = right;
-      addRequirements(m_drivetrain);
-    }
+  private final DriveSub m_drivesub;
 
+  public PID2AimDrive(DriveSub subsystem) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    m_drivesub = subsystem;
+    addRequirements(m_drivesub);
+  }
 
-// Called when the command is initially scheduled.
+  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    m_drivesub.resetGyro();
+    //m_drivesub.PIDloop(m_angle);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drivetrain.drive(m_drivetrain.drivecurve(m_left.getAsDouble()), m_drivetrain.drivecurve(m_right.getAsDouble()));
-    m_drivetrain.getaveragedistace();
+   //s m_drivesub.PIDloopAIM();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_drivetrain.drive(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return m_drivesub.getOnTarget();
   }
 }

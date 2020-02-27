@@ -45,7 +45,7 @@ public final class Constants {
 
     public static int TestMototPort = 2; 
 
-    public static double kPa = .024;
+    public static double kPa = 0.094;
     public static double kIa = 0;
     public static double kDa = 0;
 
@@ -60,6 +60,23 @@ public final class Constants {
     public static int Uts1 = 6;
     public static int Uts2 = 7;
 
+    public static int kVelocityIdx = 0;
+    public static double kVelocityP = 0;
+    public static double kVelocityI = 0;
+    public static double kVelocityD = 0;
+    public static double kVelocityF = 5.5;
+    public static int kTimeoutMs =0;
+
+
+    public static int colorport = 1;
+
+    public static double krotationP = 0;
+    public static double krotationI = 0;
+    public static double krotationD = 0;
+
+    public static double kdistanceP = 0;
+    public static double kdistanceI = 0;
+    public static double kdistanceD = 0;
     public static int ultrasonicport = 3;
 
     public static double kactuatorP = 0.008;
