@@ -53,7 +53,7 @@ public class liftsub extends SubsystemBase {
     return (2*32*20*Math.cos(angle)-400-1024-34.1751)/0.479616;
   }
   public double getcurrentangle() {
-    return Math.acos((1024+400-Math.pow((-0.0479616*logPot()+34.175), 2))/(2*32*20));
+    return Math.acos((1024+400-(Math.pow((-0.0479616*logPot()+34.175), 2)))/(2*32*20));
   }
 
   public double targetangleandcurrentAngle(final double pitch) {
