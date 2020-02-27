@@ -50,10 +50,10 @@ public class liftsub extends SubsystemBase {
     // y=-23.6*(x)+822.2 voltage 
   } // c == 25" b == 20" 
   public double potVoltage(double angle) {
-    return (2*32*20*Math.cos(angle)-400-1024-34.1751)/0.479616;
+    return (2*32*20*Math.cos((180/Math.PI)*angle)-400-1024-34.1751)/0.479616;
   }
   public double getcurrentangle() {
-    return (Math.acos((1024+400-(Math.pow((-0.0479616*logPot()+34.175), 2)))/(2*32*20)));
+    return (180/Math.PI)*(Math.acos((1024+400-(Math.pow((-0.0479616*logPot()+34.175), 2)))/(2*32*20)));
   }
 
   public double targetangleandcurrentAngle(final double pitch) {
